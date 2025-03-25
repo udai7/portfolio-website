@@ -16,7 +16,7 @@ export default function Home() {
             {/* Left Column - Text Content */}
             <div className="text-left">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-6">
-                Hi, I'm <span className="text-indigo-600">Udai Das</span>
+                Hi, I&apos;m <span className="text-indigo-600">Udai Das</span>
               </h1>
               <p className="text-xl sm:text-2xl text-gray-600 mb-8">
                 Full Stack Web Developer
@@ -65,13 +65,13 @@ export default function Home() {
           </h2>
           <div className="max-w-3xl mx-auto text-lg text-gray-600">
             <p className="mb-6">
-              I'm a passionate web developer with expertise in modern web technologies.
+            I&apos;m a passionate web developer with expertise in modern web technologies.
               With a strong foundation in both frontend and backend development,
               I create seamless, responsive web applications that deliver exceptional user experiences.
             </p>
             <p>
               My journey in web development started from ICFAI University as a Computer Science Engineer. Since then,
-              I've worked on various projects, constantly learning and adapting to
+              I&apos;ve worked on various projects, constantly learning and adapting to
               new technologies and best practices in the industry.
             </p>
           </div>
