@@ -223,6 +223,71 @@ export const myProjects = [
   },
 ];
 
+// Blog entries for the Blogs page
+export const myBlogs = [
+  {
+    id: 101,
+    title: "Building Modern React Apps with Vite",
+    description:
+      "A deep dive into setting up a modern React development environment with Vite, TailwindCSS, and best practices for scalable applications.",
+    subDescription: [
+      "Setting up Vite for lightning-fast development builds and hot module replacement.",
+      "Configuring TailwindCSS for consistent design systems and utility-first styling.",
+      "Organizing project structure for maintainable and scalable React applications.",
+      "Implementing motion animations for smooth user experiences.",
+    ],
+    href: "",
+    logo: "",
+    image: "/assets/projects/auth-system.jpg",
+    tags: [
+      { id: 1, name: "React", path: "/assets/logos/react.svg" },
+      { id: 2, name: "Vite", path: "/assets/logos/vitejs.svg" },
+      { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
+      { id: 4, name: "JavaScript", path: "/assets/logos/javascript.svg" },
+    ],
+  },
+  {
+    id: 102,
+    title: "Smooth Animations with Motion",
+    description:
+      "Creating beautiful and performant animations using motion/react for modern web applications with cursor-following effects and smooth transitions.",
+    subDescription: [
+      "Understanding motion values and springs for natural feeling animations.",
+      "Implementing cursor-following previews and interactive hover effects.",
+      "Creating modal transitions and page reveals with proper timing.",
+      "Performance optimization techniques for smooth 60fps animations.",
+    ],
+    href: "",
+    logo: "",
+    image: "/assets/projects/blazor-app.jpg",
+    tags: [
+      { id: 1, name: "React", path: "/assets/logos/react.svg" },
+      { id: 2, name: "JavaScript", path: "/assets/logos/javascript.svg" },
+      { id: 3, name: "CSS3", path: "/assets/logos/css3.svg" },
+    ],
+  },
+  {
+    id: 103,
+    title: "Design Systems & Component Architecture",
+    description:
+      "Building scalable design systems with consistent spacing, colors, and typography using CSS custom properties and utility classes.",
+    subDescription: [
+      "Creating semantic color palettes with CSS custom properties.",
+      "Building reusable component patterns with consistent spacing.",
+      "Implementing responsive design principles with mobile-first approach.",
+      "Maintaining design consistency across large applications.",
+    ],
+    href: "",
+    logo: "",
+    image: "/assets/projects/wordpress-theme.jpg",
+    tags: [
+      { id: 1, name: "CSS3", path: "/assets/logos/css3.svg" },
+      { id: 2, name: "HTML5", path: "/assets/logos/html5.svg" },
+      { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
+    ],
+  },
+];
+
 export const mySocials = [
   {
     name: "WhatsApp",

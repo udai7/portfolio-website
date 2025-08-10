@@ -55,6 +55,32 @@ body {
   overflow-x: hidden;
 }
 
+/* Subtle shimmer utility for fancy surfaces */
+.shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.shimmer::after {
+  content: "";
+  position: absolute;
+  inset: -100% -150% -100% -150%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  animation: shimmer 2.4s linear infinite;
+}
+@keyframes shimmer {
+  0% {
+    transform: translateX(-30%);
+  }
+  100% {
+    transform: translateX(30%);
+  }
+}
+
 .c-space {
   @apply sm:px-10 px-5 lg:px-15;
 }

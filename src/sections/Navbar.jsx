@@ -23,25 +23,25 @@ function Navigation() {
           Contact
         </a>
       </li>
-        <li className="nav-li">
-          <a className="nav-link" href="#blogs">
-            Blogs
-          </a>
-        </li>
+      <li className="nav-li">
+        <a className="nav-link" href="/blogs">
+          Blogs
+        </a>
+      </li>
     </ul>
   );
 }
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40">
+    <div className="fixed top-0 inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40">
       <div className="mx-auto c-space max-w-7xl">
         <div className="flex items-center justify-between py-2 sm:py-0">
           <a
             href="/"
             className="text-xl font-bold transition-colors text-neutral-400 hover:text-white"
           >
-            Ali
+            Udai
           </a>
           <button
             onClick={() => setIsOpen(!isOpen)}
