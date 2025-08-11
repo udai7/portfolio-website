@@ -5,9 +5,11 @@ import { useFrame } from "@react-three/fiber";
 
 export function LostProgrammer(props) {
   const group = useRef();
-  const { nodes, materials, animations } = useGLTF('/models/lost_programmer.glb');
+  const { nodes, materials, animations } = useGLTF(
+    "/models/lost_programmer.glb"
+  );
   const { actions } = useAnimations(animations, group);
-  
+
   useEffect(() => {
     if (animations.length > 0) {
       actions[animations[0].name]?.play();
@@ -99,4 +101,4 @@ export function LostProgrammer(props) {
   );
 }
 
-useGLTF.preload('/models/lost_programmer.glb');
+useGLTF.preload("/models/lost_programmer.glb");

@@ -1,5 +1,6 @@
 import { FlipWords } from "./FlipWords";
 import { motion } from "motion/react";
+import DownloadCVButton from "./DownloadCVButton";
 
 const HeroText = () => {
   const words = ["Secure", "Modern", "Scalable"];
@@ -50,6 +51,15 @@ const HeroText = () => {
           >
             Web Solutions
           </motion.p>
+          <motion.div
+            className="mt-8"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 2.1 }}
+          >
+            <DownloadCVButton />
+          </motion.div>
         </div>
       </div>
       {/* Mobile View */}
@@ -93,6 +103,15 @@ const HeroText = () => {
           >
             Web Applications
           </motion.p>
+          <motion.div
+            className="mt-6"
+            variants={variants}
+            initial="hidden"
+            animate="visible"
+            transition={{ delay: 2.1 }}
+          >
+            <DownloadCVButton />
+          </motion.div>
         </div>
       </div>
     </div>
