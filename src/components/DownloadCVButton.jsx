@@ -9,8 +9,8 @@ const DownloadCVButton = () => {
 
     // Create a link element and trigger download
     const link = document.createElement("a");
-    link.href = "/cv.pdf"; // This will be the CV file you'll put in public folder
-    link.download = "Udai_Das_CV.pdf";
+    link.href = "assets/CV.pdf"; // This will be the CV file you'll put in public folder
+    link.download = "CV.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
