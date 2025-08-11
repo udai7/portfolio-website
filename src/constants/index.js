@@ -10,7 +10,7 @@ export const myProjects = [
       "Designed a responsive frontend with Tailwind CSS, enhancing user experience.",
       "Added features such as user onboarding, dashboard analytics, and document management for improved functionality.",
     ],
-    href: "",
+    href: "https://github.com/udai7/Cian-Ai",
     logo: "",
     image: "/assets/projects/cian.png",
     tags: [
@@ -47,7 +47,7 @@ export const myProjects = [
       "Integrated Prisma ORM with a PostgreSQL database for reliable and scalable data storage.",
       "Utilized Docker and Nginx for deployment and efficient reverse proxy management.",
     ],
-    href: "",
+    href: "https://github.com/udai7/It-internship-project",
     logo: "",
     image: "/assets/projects/info.png",
     tags: [
@@ -83,7 +83,7 @@ export const myProjects = [
       "Integrates PostgreSQL as the primary database for reliable, efficient, and secure data storage.",
       "Highlights robust API interactions and a scalable backend using Express.js, TypeScript, and Prisma ORM.",
     ],
-    href: "",
+    href: "https://github.com/udai7/SCERT-Book-Management-Platform",
     logo: "",
     image: "/assets/projects/scert.png",
     tags: [
@@ -119,7 +119,7 @@ export const myProjects = [
       "Implemented product browsing, artisan profiles, cart management, and secure checkout flows.",
       "Integrated Razorpay API for smooth and secure payment processing.",
     ],
-    href: "",
+    href: "https://github.com/udai7/handicrafts-purbasa",
     logo: "",
     image: "/assets/projects/purbasha.png",
     tags: [
@@ -156,7 +156,7 @@ export const myProjects = [
       "Implemented MongoDB for efficient data storage and retrieval.",
       "Enhanced build speed and deployment efficiency through Vercel hosting.",
     ],
-    href: "",
+    href: "https://github.com/udai7/OatMeal",
     logo: "",
     image: "/assets/projects/oatmeal.png",
     tags: [
@@ -192,9 +192,9 @@ export const myProjects = [
       "Integrated Razorpay API for secure and seamless payment processing.",
       "Designed user dashboards with event details, timelines, and status tracking.",
     ],
-    href: "",
+    href: "https://github.com/udai7/hackathon-platform",
     logo: "",
-    image: "/assets/projects/elearning.jpg",
+    image: "/assets/projects/hackpub.png",
     tags: [
       {
         id: 1,
@@ -293,12 +293,12 @@ export const mySocials = [
   },
   {
     name: "Linkedin",
-    href: "https://www.linkedin.com/in/ali-sanati/",
+    href: "https://www.linkedin.com/in/udai-das-9277a223b/",
     icon: "/assets/socials/linkedIn.svg",
   },
   {
     name: "Instagram",
-    href: "https://www.instagram.com/ali.sanatidev/reels/",
+    href: "https://www.instagram.com/archilect_7",
     icon: "/assets/socials/instagram.svg",
   },
 ];
