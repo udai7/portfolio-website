@@ -6,6 +6,7 @@ const ProjectDetails = ({
   image,
   tags,
   href,
+  liveUrl,
   closeModal,
 }) => {
   return (
@@ -39,14 +40,25 @@ const ProjectDetails = ({
                 />
               ))}
             </div>
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-medium cursor-pointer hover-animation"
-            >
-              View Project <img src="assets/arrow-up.svg" className="size-4" />
-            </a>
+            <div className="flex gap-3">
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium cursor-pointer hover-animation"
+              >
+                View Project{" "}
+                <img src="assets/arrow-up.svg" className="size-4" />
+              </a>
+              <a
+                href={liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-medium cursor-pointer hover-animation"
+              >
+                Live Demo <img src="assets/arrow-up.svg" className="size-4" />
+              </a>
+            </div>
           </div>
         </div>
       </motion.div>

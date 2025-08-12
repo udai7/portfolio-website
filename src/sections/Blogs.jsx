@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
-import Project from "../components/Project";
+import BlogEntry from "../components/BlogEntry";
 import { myBlogs } from "../constants";
 import { motion, useMotionValue, useSpring } from "motion/react";
 
@@ -31,7 +31,7 @@ const Blogs = () => {
           </p>
           <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent mt-12 h-[1px] w-full" />
           {myBlogs.map((blog) => (
-            <Project key={blog.id} {...blog} setPreview={setPreview} />
+            <BlogEntry key={blog.id} {...blog} setPreview={setPreview} />
           ))}
           {preview && (
             <motion.img

@@ -11,6 +11,7 @@ export const myProjects = [
       "Added features such as user onboarding, dashboard analytics, and document management for improved functionality.",
     ],
     href: "https://github.com/udai7/Cian-Ai",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/cian.png",
     tags: [
@@ -48,6 +49,7 @@ export const myProjects = [
       "Utilized Docker and Nginx for deployment and efficient reverse proxy management.",
     ],
     href: "https://github.com/udai7/It-internship-project",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/info.png",
     tags: [
@@ -84,6 +86,7 @@ export const myProjects = [
       "Highlights robust API interactions and a scalable backend using Express.js, TypeScript, and Prisma ORM.",
     ],
     href: "https://github.com/udai7/SCERT-Book-Management-Platform",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/scert.png",
     tags: [
@@ -120,6 +123,7 @@ export const myProjects = [
       "Integrated Razorpay API for smooth and secure payment processing.",
     ],
     href: "https://github.com/udai7/handicrafts-purbasa",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/purbasha.png",
     tags: [
@@ -157,6 +161,7 @@ export const myProjects = [
       "Enhanced build speed and deployment efficiency through Vercel hosting.",
     ],
     href: "https://github.com/udai7/OatMeal",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/oatmeal.png",
     tags: [
@@ -193,6 +198,7 @@ export const myProjects = [
       "Designed user dashboards with event details, timelines, and status tracking.",
     ],
     href: "https://github.com/udai7/hackathon-platform",
+    liveUrl: "https://www.youtube.com",
     logo: "",
     image: "/assets/projects/hackpub.png",
     tags: [
@@ -223,64 +229,24 @@ export const myProjects = [
 // Blog entries for the Blogs page
 export const myBlogs = [
   {
-    id: 101,
-    title: "Building Modern React Apps with Vite",
-    description:
-      "A deep dive into setting up a modern React development environment with Vite, TailwindCSS, and best practices for scalable applications.",
-    subDescription: [
-      "Setting up Vite for lightning-fast development builds and hot module replacement.",
-      "Configuring TailwindCSS for consistent design systems and utility-first styling.",
-      "Organizing project structure for maintainable and scalable React applications.",
-      "Implementing motion animations for smooth user experiences.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/auth-system.jpg",
-    tags: [
-      { id: 1, name: "React", path: "/assets/logos/react.svg" },
-      { id: 2, name: "Vite", path: "/assets/logos/vitejs.svg" },
-      { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
-      { id: 4, name: "JavaScript", path: "/assets/logos/javascript.svg" },
-    ],
-  },
-  {
     id: 102,
-    title: "Smooth Animations with Motion",
+    title: "Government Services Platform: Full-Stack Development Deep Dive",
     description:
-      "Creating beautiful and performant animations using motion/react for modern web applications with cursor-following effects and smooth transitions.",
+      "A comprehensive guide to building a full-stack government services platform using React, TypeScript, Node.js, Express, and PostgreSQL with modern development practices.",
     subDescription: [
-      "Understanding motion values and springs for natural feeling animations.",
-      "Implementing cursor-following previews and interactive hover effects.",
-      "Creating modal transitions and page reveals with proper timing.",
-      "Performance optimization techniques for smooth 60fps animations.",
+      "Architecting a scalable monorepo structure with separate frontend and backend applications.",
+      "Implementing secure authentication and authorization with JWT and role-based access control.",
+      "Building RESTful APIs with Express.js and Prisma ORM for type-safe database operations.",
+      "Creating responsive UI components with React, TypeScript, and Tailwind CSS for government service delivery.",
     ],
-    href: "",
+    href: "https://github.com/udai7/It-internship-project",
     logo: "",
-    image: "/assets/projects/blazor-app.jpg",
+    image: "/assets/projects/info.png",
     tags: [
       { id: 1, name: "React", path: "/assets/logos/react.svg" },
-      { id: 2, name: "JavaScript", path: "/assets/logos/javascript.svg" },
-      { id: 3, name: "CSS3", path: "/assets/logos/css3.svg" },
-    ],
-  },
-  {
-    id: 103,
-    title: "Design Systems & Component Architecture",
-    description:
-      "Building scalable design systems with consistent spacing, colors, and typography using CSS custom properties and utility classes.",
-    subDescription: [
-      "Creating semantic color palettes with CSS custom properties.",
-      "Building reusable component patterns with consistent spacing.",
-      "Implementing responsive design principles with mobile-first approach.",
-      "Maintaining design consistency across large applications.",
-    ],
-    href: "",
-    logo: "",
-    image: "/assets/projects/wordpress-theme.jpg",
-    tags: [
-      { id: 1, name: "CSS3", path: "/assets/logos/css3.svg" },
-      { id: 2, name: "HTML5", path: "/assets/logos/html5.svg" },
-      { id: 3, name: "TailwindCSS", path: "/assets/logos/tailwindcss.svg" },
+      { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
+      { id: 3, name: "Node.js", path: "/assets/logos/nodejs.svg" },
+      { id: 4, name: "PostgreSQL", path: "/assets/logos/postgres.png" },
     ],
   },
 ];
@@ -387,8 +353,8 @@ export const reviews = [
     img: "https://robohash.org/dave",
   },
   {
-    name: "Saptarshi",
-    username: "@saptarshi",
+    name: "Daliya",
+    username: "@daliya",
     body: "Thrilled to work with someone so dedicated, skilled, and driven towards excellence.",
     img: "https://robohash.org/eve",
   },
