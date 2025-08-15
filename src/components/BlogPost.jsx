@@ -87,77 +87,157 @@ const BlogPost = ({ blog, onClose }) => {
           <div className="space-y-6">
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">
-                User Services
+                {isHackathonPlatform
+                  ? "Modern UI & User Experience"
+                  : "User Services"}
               </h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                  <h4 className="font-medium text-white mb-2">
-                    Scheme Services
-                  </h4>
-                  <p className="text-neutral-300 text-sm">
-                    Browse and access various government schemes with detailed
-                    information and application procedures.
-                  </p>
-                </div>
-                <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                  <h4 className="font-medium text-white mb-2">
-                    Certificate Services
-                  </h4>
-                  <p className="text-neutral-300 text-sm">
-                    Apply for various certificates including birth, death,
-                    income, and caste certificates online.
-                  </p>
-                </div>
-                <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                  <h4 className="font-medium text-white mb-2">
-                    Contact Services
-                  </h4>
-                  <p className="text-neutral-300 text-sm">
-                    Find contact information for different government
-                    departments and officials.
-                  </p>
-                </div>
-                <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                  <h4 className="font-medium text-white mb-2">
-                    Emergency Services
-                  </h4>
-                  <p className="text-neutral-300 text-sm">
-                    Access emergency contacts and services for urgent
-                    situations.
-                  </p>
-                </div>
+                {isHackathonPlatform ? (
+                  <>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        3D Effects & Glassmorphism
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Sleek dark theme with neon accents, interactive 3D cards
+                        with hover animations, and beautiful glassmorphism
+                        design elements.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Google OAuth Integration
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Secure sign-in/up with Google accounts, 24-hour sessions
+                        with auto-refresh, and JWT token security.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Hackathon Management
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Create & edit hackathons, advanced search & filtering,
+                        participant management, and project submissions.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Payment & AI Integration
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Razorpay integration for registration fees and Google
+                        Gemini AI for automated project evaluation.
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Scheme Services
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Browse and access various government schemes with
+                        detailed information and application procedures.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Certificate Services
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Apply for various certificates including birth, death,
+                        income, and caste certificates online.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Contact Services
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Find contact information for different government
+                        departments and officials.
+                      </p>
+                    </div>
+                    <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                      <h4 className="font-medium text-white mb-2">
+                        Emergency Services
+                      </h4>
+                      <p className="text-neutral-300 text-sm">
+                        Access emergency contacts and services for urgent
+                        situations.
+                      </p>
+                    </div>
+                  </>
+                )}
               </div>
             </div>
 
             <div>
               <h3 className="text-xl font-semibold text-white mb-3">
-                Admin Dashboard
+                {isHackathonPlatform
+                  ? "Smart Dashboard & Management"
+                  : "Admin Dashboard"}
               </h3>
               <ul className="list-disc list-inside text-neutral-300 space-y-2">
-                <li>
-                  <strong>Service Management:</strong> Create, edit, and manage
-                  all government services
-                </li>
-                <li>
-                  <strong>User Management:</strong> Manage user accounts and
-                  permissions with role-based access
-                </li>
-                <li>
-                  <strong>Content Management:</strong> Update service
-                  information and documents
-                </li>
-                <li>
-                  <strong>Analytics:</strong> View usage statistics and generate
-                  reports
-                </li>
-                <li>
-                  <strong>Feedback System:</strong> Monitor and respond to user
-                  feedback
-                </li>
-                <li>
-                  <strong>Grievance Portal:</strong> Track and resolve user
-                  grievances
-                </li>
+                {isHackathonPlatform ? (
+                  <>
+                    <li>
+                      <strong>Role-Based Views:</strong> Different interfaces
+                      for hosts and participants with tailored functionality
+                    </li>
+                    <li>
+                      <strong>Hackathon Management:</strong> Create, edit, and
+                      delete hackathons with custom details, dates, and rules
+                    </li>
+                    <li>
+                      <strong>Project Submissions:</strong> Normalized
+                      submission system with winner declaration and project
+                      evaluation
+                    </li>
+                    <li>
+                      <strong>Analytics & Stats:</strong> Track participation,
+                      completion rates, and hackathon performance metrics
+                    </li>
+                    <li>
+                      <strong>Payment Integration:</strong> Razorpay integration
+                      for paid hackathon registration with secure verification
+                    </li>
+                    <li>
+                      <strong>AI Evaluation:</strong> Google Gemini AI
+                      integration for automated project scoring and evaluation
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li>
+                      <strong>Service Management:</strong> Create, edit, and
+                      manage all government services
+                    </li>
+                    <li>
+                      <strong>User Management:</strong> Manage user accounts and
+                      permissions with role-based access
+                    </li>
+                    <li>
+                      <strong>Content Management:</strong> Update service
+                      information and documents
+                    </li>
+                    <li>
+                      <strong>Analytics:</strong> View usage statistics and
+                      generate reports
+                    </li>
+                    <li>
+                      <strong>Feedback System:</strong> Monitor and respond to
+                      user feedback
+                    </li>
+                    <li>
+                      <strong>Grievance Portal:</strong> Track and resolve user
+                      grievances
+                    </li>
+                  </>
+                )}
               </ul>
             </div>
           </div>
@@ -181,7 +261,9 @@ const BlogPost = ({ blog, onClose }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
                     <span className="text-white font-medium">
-                      Vite for build tooling
+                      {isHackathonPlatform
+                        ? "Vite for fast builds"
+                        : "Vite for build tooling"}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
@@ -193,7 +275,9 @@ const BlogPost = ({ blog, onClose }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     <span className="text-white font-medium">
-                      Radix UI components
+                      {isHackathonPlatform
+                        ? "shadcn/ui components"
+                        : "Radix UI components"}
                     </span>
                   </div>
                 </div>
@@ -207,13 +291,17 @@ const BlogPost = ({ blog, onClose }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                     <span className="text-white font-medium">
-                      React Query for state management
+                      {isHackathonPlatform
+                        ? "React OAuth Google"
+                        : "React Query for state management"}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                     <span className="text-white font-medium">
-                      React Hook Form
+                      {isHackathonPlatform
+                        ? "Framer Motion animations"
+                        : "React Hook Form"}
                     </span>
                   </div>
                 </div>
@@ -241,7 +329,9 @@ const BlogPost = ({ blog, onClose }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-blue-600 rounded-full"></div>
                     <span className="text-white font-medium">
-                      Prisma ORM with PostgreSQL
+                      {isHackathonPlatform
+                        ? "MongoDB with Mongoose"
+                        : "Prisma ORM with PostgreSQL"}
                     </span>
                   </div>
                 </div>
@@ -255,13 +345,17 @@ const BlogPost = ({ blog, onClose }) => {
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-indigo-600 rounded-full"></div>
                     <span className="text-white font-medium">
-                      Express Validator
+                      {isHackathonPlatform
+                        ? "Razorpay & Google Gemini AI"
+                        : "Express Validator"}
                     </span>
                   </div>
                   <div className="flex items-center gap-3">
                     <div className="w-3 h-3 bg-pink-600 rounded-full"></div>
                     <span className="text-white font-medium">
-                      Bcrypt & Multer
+                      {isHackathonPlatform
+                        ? "ESLint & tsx tooling"
+                        : "Bcrypt & Multer"}
                     </span>
                   </div>
                 </div>
@@ -278,7 +372,9 @@ const BlogPost = ({ blog, onClose }) => {
                 API Endpoints
               </h3>
               <p className="text-neutral-300 mb-4">
-                The backend provides RESTful API endpoints for all services:
+                {isHackathonPlatform
+                  ? "The backend provides RESTful API endpoints for hackathon management:"
+                  : "The backend provides RESTful API endpoints for all services:"}
               </p>
             </div>
 
@@ -290,13 +386,21 @@ const BlogPost = ({ blog, onClose }) => {
                     <span className="bg-green-600 px-2 py-1 rounded text-xs">
                       POST
                     </span>
-                    <span className="text-neutral-300">/api/auth/login</span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/auth/google"
+                        : "/api/auth/login"}
+                    </span>
                   </div>
                   <div className="flex gap-3">
                     <span className="bg-blue-600 px-2 py-1 rounded text-xs">
-                      POST
+                      {isHackathonPlatform ? "GET" : "POST"}
                     </span>
-                    <span className="text-neutral-300">/api/auth/register</span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/auth/session"
+                        : "/api/auth/register"}
+                    </span>
                   </div>
                   <div className="flex gap-3">
                     <span className="bg-orange-600 px-2 py-1 rounded text-xs">
@@ -308,52 +412,18 @@ const BlogPost = ({ blog, onClose }) => {
               </div>
 
               <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                <h4 className="font-medium text-white mb-2">Scheme Services</h4>
-                <div className="space-y-2 text-sm">
-                  <div className="flex gap-3">
-                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
-                      GET
-                    </span>
-                    <span className="text-neutral-300">/api/schemes</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
-                      GET
-                    </span>
-                    <span className="text-neutral-300">/api/schemes/:id</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-green-600 px-2 py-1 rounded text-xs">
-                      POST
-                    </span>
-                    <span className="text-neutral-300">/api/schemes</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-yellow-600 px-2 py-1 rounded text-xs">
-                      PUT
-                    </span>
-                    <span className="text-neutral-300">/api/schemes/:id</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
                 <h4 className="font-medium text-white mb-2">
-                  Certificate Services
+                  {isHackathonPlatform
+                    ? "Hackathon Management"
+                    : "Scheme Services"}
                 </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex gap-3">
                     <span className="bg-blue-600 px-2 py-1 rounded text-xs">
                       GET
                     </span>
-                    <span className="text-neutral-300">/api/certificates</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-green-600 px-2 py-1 rounded text-xs">
-                      POST
-                    </span>
                     <span className="text-neutral-300">
-                      /api/certificates/apply
+                      {isHackathonPlatform ? "/api/hackathons" : "/api/schemes"}
                     </span>
                   </div>
                   <div className="flex gap-3">
@@ -361,27 +431,47 @@ const BlogPost = ({ blog, onClose }) => {
                       GET
                     </span>
                     <span className="text-neutral-300">
-                      /api/certificates/status/:id
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id"
+                        : "/api/schemes/:id"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-green-600 px-2 py-1 rounded text-xs">
+                      POST
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform ? "/api/hackathons" : "/api/schemes"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-yellow-600 px-2 py-1 rounded text-xs">
+                      {isHackathonPlatform ? "DELETE" : "PUT"}
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id"
+                        : "/api/schemes/:id"}
                     </span>
                   </div>
                 </div>
               </div>
 
               <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
-                <h4 className="font-medium text-white mb-2">Admin Dashboard</h4>
+                <h4 className="font-medium text-white mb-2">
+                  {isHackathonPlatform
+                    ? "Project Submissions"
+                    : "Certificate Services"}
+                </h4>
                 <div className="space-y-2 text-sm">
                   <div className="flex gap-3">
                     <span className="bg-blue-600 px-2 py-1 rounded text-xs">
                       GET
                     </span>
-                    <span className="text-neutral-300">/api/admin/users</span>
-                  </div>
-                  <div className="flex gap-3">
-                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
-                      GET
-                    </span>
                     <span className="text-neutral-300">
-                      /api/admin/analytics
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id/submissions"
+                        : "/api/certificates"}
                     </span>
                   </div>
                   <div className="flex gap-3">
@@ -389,7 +479,59 @@ const BlogPost = ({ blog, onClose }) => {
                       POST
                     </span>
                     <span className="text-neutral-300">
-                      /api/admin/services
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id/submissions"
+                        : "/api/certificates/apply"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
+                      {isHackathonPlatform ? "POST" : "GET"}
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id/declare-winner"
+                        : "/api/certificates/status/:id"}
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-midnight to-navy p-4 rounded-lg border border-white/10">
+                <h4 className="font-medium text-white mb-2">
+                  {isHackathonPlatform
+                    ? "Payment & Registration"
+                    : "Admin Dashboard"}
+                </h4>
+                <div className="space-y-2 text-sm">
+                  <div className="flex gap-3">
+                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
+                      {isHackathonPlatform ? "POST" : "GET"}
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/payments/create-order"
+                        : "/api/admin/users"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-blue-600 px-2 py-1 rounded text-xs">
+                      {isHackathonPlatform ? "POST" : "GET"}
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/payments/verify"
+                        : "/api/admin/analytics"}
+                    </span>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="bg-green-600 px-2 py-1 rounded text-xs">
+                      POST
+                    </span>
+                    <span className="text-neutral-300">
+                      {isHackathonPlatform
+                        ? "/api/hackathons/:id/register"
+                        : "/api/admin/services"}
                     </span>
                   </div>
                 </div>
@@ -415,8 +557,18 @@ const BlogPost = ({ blog, onClose }) => {
                 <h4 className="font-medium text-white mb-2">Prerequisites</h4>
                 <ul className="list-disc list-inside text-neutral-300 space-y-1">
                   <li>Node.js (v18 or higher)</li>
-                  <li>PostgreSQL database</li>
+                  <li>
+                    {isHackathonPlatform
+                      ? "MongoDB (local or Atlas)"
+                      : "PostgreSQL database"}
+                  </li>
                   <li>npm or yarn package manager</li>
+                  {isHackathonPlatform && (
+                    <>
+                      <li>Google OAuth credentials (for login)</li>
+                      <li>Razorpay API keys (for payments)</li>
+                    </>
+                  )}
                 </ul>
               </div>
 
@@ -430,10 +582,13 @@ const BlogPost = ({ blog, onClose }) => {
                       1. Clone the repository
                     </p>
                     <code className="text-green-400 text-xs md:text-sm block">
-                      git clone &lt;repository-url&gt;
+                      git clone https://github.com/udai7/hackathon-platform.git
                     </code>
                     <code className="text-green-400 text-xs md:text-sm block">
-                      cd government-services-platform
+                      cd{" "}
+                      {isHackathonPlatform
+                        ? "hackathon-platform"
+                        : "government-services-platform"}
                     </code>
                   </div>
 
@@ -442,43 +597,82 @@ const BlogPost = ({ blog, onClose }) => {
                       2. Install dependencies
                     </p>
                     <code className="text-green-400 text-sm">
-                      npm run install:all
+                      {isHackathonPlatform
+                        ? "npm install"
+                        : "npm run install:all"}
                     </code>
                   </div>
 
-                  <div className="bg-gray-900 p-3 rounded-lg">
+                  <div className="bg-gray-900 p-3 rounded-lg overflow-x-auto">
                     <p className="text-neutral-400 text-sm mb-1">
                       3. Set up environment variables
                     </p>
-                    <code className="text-green-400 text-sm">
-                      DATABASE_URL="postgresql://username:password@localhost:5432/government_services"
-                    </code>
-                    <br />
-                    <code className="text-green-400 text-sm">
-                      JWT_SECRET="your-jwt-secret-key"
-                    </code>
-                    <br />
-                    <code className="text-green-400 text-sm">PORT=3001</code>
+                    {isHackathonPlatform ? (
+                      <>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          MONGODB_URI=your-mongodb-uri
+                        </code>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          JWT_SECRET=your-jwt-secret
+                        </code>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          GOOGLE_CLIENT_ID=your-google-client-id
+                        </code>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          RAZORPAY_KEY_ID=your-razorpay-key-id
+                        </code>
+                      </>
+                    ) : (
+                      <>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          DATABASE_URL="postgresql://username:password@localhost:5432/government_services"
+                        </code>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          JWT_SECRET="your-jwt-secret-key"
+                        </code>
+                        <code className="text-green-400 text-xs md:text-sm block">
+                          PORT=3001
+                        </code>
+                      </>
+                    )}
                   </div>
+
+                  {!isHackathonPlatform && (
+                    <div className="bg-gray-900 p-3 rounded-lg">
+                      <p className="text-neutral-400 text-sm mb-1">
+                        4. Set up the database
+                      </p>
+                      <code className="text-green-400 text-sm block">
+                        npm run db:generate
+                      </code>
+                      <code className="text-green-400 text-sm block">
+                        npm run db:push
+                      </code>
+                    </div>
+                  )}
 
                   <div className="bg-gray-900 p-3 rounded-lg">
                     <p className="text-neutral-400 text-sm mb-1">
-                      4. Set up the database
+                      {isHackathonPlatform
+                        ? "4. Start the application"
+                        : "5. Start development servers"}
                     </p>
-                    <code className="text-green-400 text-sm">
-                      npm run db:generate
+                    <code className="text-green-400 text-sm block">
+                      {isHackathonPlatform ? "npm run dev:full" : "npm run dev"}
                     </code>
-                    <br />
-                    <code className="text-green-400 text-sm">
-                      npm run db:push
-                    </code>
-                  </div>
-
-                  <div className="bg-gray-900 p-3 rounded-lg">
-                    <p className="text-neutral-400 text-sm mb-1">
-                      5. Start development servers
-                    </p>
-                    <code className="text-green-400 text-sm">npm run dev</code>
+                    {isHackathonPlatform && (
+                      <>
+                        <p className="text-neutral-400 text-xs mt-2">
+                          Or run separately:
+                        </p>
+                        <code className="text-green-400 text-xs block">
+                          Backend: npm run server
+                        </code>
+                        <code className="text-green-400 text-xs block">
+                          Frontend: npm run dev
+                        </code>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
@@ -549,30 +743,73 @@ const BlogPost = ({ blog, onClose }) => {
                   Environment Configuration
                 </h4>
                 <div className="bg-gray-900 p-3 rounded-lg space-y-1 overflow-x-auto">
-                  <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
-                    DATABASE_URL="postgresql://user:password@host:port/database"
-                  </code>
-                  <code className="text-green-400 text-xs md:text-sm block">
-                    JWT_SECRET="your-secure-jwt-secret"
-                  </code>
-                  <code className="text-green-400 text-xs md:text-sm block">
-                    NODE_ENV="production"
-                  </code>
-                  <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
-                    CORS_ORIGIN="https://your-frontend-domain.com"
-                  </code>
+                  {isHackathonPlatform ? (
+                    <>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        PORT=5000
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
+                        MONGODB_URI=your-production-mongodb-uri
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        JWT_SECRET=your-secure-jwt-secret
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        SESSION_SECRET=your-session-secret
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        GOOGLE_CLIENT_ID=your-google-client-id
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        RAZORPAY_KEY_ID=your-razorpay-key-id
+                      </code>
+                    </>
+                  ) : (
+                    <>
+                      <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
+                        DATABASE_URL="postgresql://user:password@host:port/database"
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        JWT_SECRET="your-secure-jwt-secret"
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block">
+                        NODE_ENV="production"
+                      </code>
+                      <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
+                        CORS_ORIGIN="https://your-frontend-domain.com"
+                      </code>
+                    </>
+                  )}
                 </div>
               </div>
 
               <div>
                 <h4 className="font-medium text-white mb-2">
-                  Backend Deployment
+                  {isHackathonPlatform
+                    ? "Server Deployment"
+                    : "Backend Deployment"}
                 </h4>
                 <ul className="list-disc list-inside text-neutral-300 space-y-1">
-                  <li>Upload backend/dist folder to your server</li>
-                  <li>Install production dependencies</li>
-                  <li>Set up process manager (PM2 recommended)</li>
-                  <li>Configure production database</li>
+                  {isHackathonPlatform ? (
+                    <>
+                      <li>
+                        Deploy to platforms like Heroku, Railway, or
+                        DigitalOcean
+                      </li>
+                      <li>Set up MongoDB Atlas for production database</li>
+                      <li>
+                        Configure environment variables on hosting platform
+                      </li>
+                      <li>Set up process manager (PM2) for Node.js server</li>
+                    </>
+                  ) : (
+                    <>
+                      <li>Upload backend/dist folder to your server</li>
+                      <li>Install production dependencies</li>
+                      <li>Set up process manager (PM2 recommended)</li>
+                      <li>Configure production database</li>
+                    </>
+                  )}
                 </ul>
               </div>
 
@@ -581,45 +818,117 @@ const BlogPost = ({ blog, onClose }) => {
                   Frontend Deployment
                 </h4>
                 <ul className="list-disc list-inside text-neutral-300 space-y-1">
-                  <li>Upload frontend/dist folder to web server</li>
-                  <li>Configure web server (Nginx/Apache)</li>
-                  <li>Set up reverse proxy to backend API</li>
-                  <li>Configure SSL certificates</li>
+                  {isHackathonPlatform ? (
+                    <>
+                      <li>Build the React app with `npm run build`</li>
+                      <li>Deploy to Vercel, Netlify, or similar platforms</li>
+                      <li>Configure environment variables for production</li>
+                      <li>Set up custom domain and SSL certificates</li>
+                    </>
+                  ) : (
+                    <>
+                      <li>Upload frontend/dist folder to web server</li>
+                      <li>Configure web server (Nginx/Apache)</li>
+                      <li>Set up reverse proxy to backend API</li>
+                      <li>Configure SSL certificates</li>
+                    </>
+                  )}
                 </ul>
               </div>
 
               <div>
-                <h4 className="font-medium text-white mb-2">Database Schema</h4>
+                <h4 className="font-medium text-white mb-2">
+                  {isHackathonPlatform
+                    ? "MongoDB Collections"
+                    : "Database Schema"}
+                </h4>
                 <p className="text-neutral-300 mb-2">
-                  Key entities in the PostgreSQL database:
+                  {isHackathonPlatform
+                    ? "Key collections in the MongoDB database:"
+                    : "Key entities in the PostgreSQL database:"}
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">Admin</span>
-                  </div>
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">SchemeService</span>
-                  </div>
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">
-                      CertificateService
-                    </span>
-                  </div>
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">
-                      ContactService
-                    </span>
-                  </div>
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">
-                      EmergencyService
-                    </span>
-                  </div>
-                  <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
-                    <span className="text-cyan-400 text-sm">Feedback</span>
-                  </div>
+                  {isHackathonPlatform ? (
+                    <>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">User</span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">Hackathon</span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          Submission
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">Payment</span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          Registration
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">Winner</span>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">Admin</span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          SchemeService
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          CertificateService
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          ContactService
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">
+                          EmergencyService
+                        </span>
+                      </div>
+                      <div className="bg-gradient-to-r from-midnight to-navy p-2 rounded border border-white/10">
+                        <span className="text-cyan-400 text-sm">Feedback</span>
+                      </div>
+                    </>
+                  )}
                 </div>
               </div>
+
+              {isHackathonPlatform && (
+                <div>
+                  <h4 className="font-medium text-white mb-2">
+                    Migration & Tooling
+                  </h4>
+                  <ul className="list-disc list-inside text-neutral-300 space-y-1">
+                    <li>
+                      TypeScript migration script for normalizing legacy
+                      submissions
+                    </li>
+                    <li>
+                      Run `npm run migrate:submissions` for historical data
+                      migration
+                    </li>
+                    <li>
+                      ESLint for code quality and tsx for TypeScript execution
+                    </li>
+                    <li>
+                      Concurrently for running frontend and backend together
+                    </li>
+                  </ul>
+                </div>
+              )}
             </div>
           </div>
         );
