@@ -13,8 +13,12 @@ const BlogEntry = ({
 }) => {
   const [isHidden, setIsHidden] = useState(false);
 
-  // Check if this is the Information Service project blog
-  const isInfoServiceBlog = id === 102 || title.includes("Information Service");
+  // Check if this is a detailed blog post (Information Service or Hackathon Platform)
+  const isDetailedBlog =
+    id === 102 ||
+    id === 103 ||
+    title.includes("Information Service") ||
+    title.includes("HackPub");
 
   return (
     <>
@@ -40,7 +44,7 @@ const BlogEntry = ({
         </button>
       </div>
       <div className="bg-gradient-to-r from-transparent via-neutral-700 to-transparent h-[1px] w-full" />
-      {isHidden && isInfoServiceBlog && (
+      {isHidden && isDetailedBlog && (
         <BlogPost
           blog={{
             id,
@@ -54,7 +58,7 @@ const BlogEntry = ({
           onClose={() => setIsHidden(false)}
         />
       )}
-      {isHidden && !isInfoServiceBlog && (
+      {isHidden && !isDetailedBlog && (
         <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm">
           <div className="relative max-w-2xl border shadow-sm rounded-2xl bg-gradient-to-l from-midnight to-navy border-white/10">
             <button

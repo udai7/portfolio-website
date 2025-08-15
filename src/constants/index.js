@@ -249,6 +249,27 @@ export const myBlogs = [
       { id: 4, name: "PostgreSQL", path: "/assets/logos/postgres.png" },
     ],
   },
+  {
+    id: 103,
+    title: "HackPub: Modern Hackathon Platform with 3D UI & AI Integration",
+    description:
+      "Building a comprehensive hackathon platform with modern 3D UI effects, glassmorphism design, Google OAuth, payment integration, and AI-powered project evaluation using React, TypeScript, and MongoDB.",
+    subDescription: [
+      "Creating stunning 3D card effects, glassmorphism design, and particle backgrounds for modern user experience.",
+      "Implementing robust authentication with Google OAuth, JWT tokens, and 24-hour session management.",
+      "Building comprehensive hackathon management with registration, project submissions, and winner declaration systems.",
+      "Integrating Razorpay payment gateway and Google Gemini AI for automated project evaluation and scoring.",
+    ],
+    href: "https://github.com/udai7/hackathon-platform",
+    logo: "",
+    image: "/assets/projects/hackpub.png",
+    tags: [
+      { id: 1, name: "React", path: "/assets/logos/react.svg" },
+      { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
+      { id: 3, name: "MongoDB", path: "/assets/logos/MongoDB.png" },
+      { id: 4, name: "Node.js", path: "/assets/logos/nodejs.svg" },
+    ],
+  },
 ];
 
 export const mySocials = [

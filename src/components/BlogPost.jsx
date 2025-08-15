@@ -4,6 +4,11 @@ import { useState } from "react";
 const BlogPost = ({ blog, onClose }) => {
   const [activeSection, setActiveSection] = useState("overview");
 
+  // Determine which project this is
+  const isHackathonPlatform = blog.id === 103 || blog.title.includes("HackPub");
+  const isGovernmentServices =
+    blog.id === 102 || blog.title.includes("Government Services");
+
   const sections = {
     overview: "Overview",
     features: "Features",
@@ -17,18 +22,15 @@ const BlogPost = ({ blog, onClose }) => {
     switch (activeSection) {
       case "overview":
         return (
-          <div className="space-y-6">
+          <div className="space-y-4 md:space-y-6">
             <div>
-              <h3 className="text-xl font-semibold text-white mb-3">
+              <h3 className="text-lg md:text-xl font-semibold text-white mb-3">
                 Project Overview
               </h3>
               <p className="text-neutral-300 leading-relaxed">
-                The Government Services Platform is a comprehensive full-stack
-                web application designed to streamline access to government
-                services. Built with modern technologies like React, TypeScript,
-                Node.js, Express, and PostgreSQL, this platform serves as a
-                one-stop solution for citizens to access various government
-                schemes, certificates, and contact information.
+                {isHackathonPlatform
+                  ? "HackPub is a sleek, modern platform for creating, managing, and participating in hackathons worldwide. Built with React 18, TypeScript, and MongoDB, it features stunning 3D UI effects, glassmorphism design, Google OAuth authentication, Razorpay payment integration, and AI-powered project evaluation using Google Gemini AI."
+                  : "The Government Services Platform is a comprehensive full-stack web application designed to streamline access to government services. Built with modern technologies like React, TypeScript, Node.js, Express, and PostgreSQL, this platform serves as a one-stop solution for citizens to access various government schemes, certificates, and contact information."}
               </p>
             </div>
 
@@ -37,11 +39,33 @@ const BlogPost = ({ blog, onClose }) => {
                 Key Objectives
               </h4>
               <ul className="list-disc list-inside text-neutral-300 space-y-2">
-                <li>Digitize government service delivery</li>
-                <li>Provide secure user authentication and authorization</li>
-                <li>Enable efficient service management for administrators</li>
-                <li>Offer responsive design for all device types</li>
-                <li>Implement real-time data synchronization</li>
+                {isHackathonPlatform ? (
+                  <>
+                    <li>Create modern hackathon platform with 3D UI effects</li>
+                    <li>
+                      Implement secure Google OAuth and session management
+                    </li>
+                    <li>
+                      Enable comprehensive hackathon and participant management
+                    </li>
+                    <li>
+                      Integrate payment processing and AI project evaluation
+                    </li>
+                    <li>Provide real-time updates and beautiful animations</li>
+                  </>
+                ) : (
+                  <>
+                    <li>Digitize government service delivery</li>
+                    <li>
+                      Provide secure user authentication and authorization
+                    </li>
+                    <li>
+                      Enable efficient service management for administrators
+                    </li>
+                    <li>Offer responsive design for all device types</li>
+                    <li>Implement real-time data synchronization</li>
+                  </>
+                )}
               </ul>
             </div>
 
@@ -50,11 +74,9 @@ const BlogPost = ({ blog, onClose }) => {
                 Architecture
               </h4>
               <p className="text-neutral-300 leading-relaxed">
-                The application follows a monorepo structure with separate
-                frontend and backend directories. The frontend is built with
-                React 18 and TypeScript, utilizing Vite for fast development
-                builds. The backend uses Express.js with Prisma ORM for database
-                operations, ensuring type-safe database queries and migrations.
+                {isHackathonPlatform
+                  ? "The application features a modern React 18 frontend with TypeScript, utilizing Vite for lightning-fast builds. The backend is powered by Node.js and Express with MongoDB for flexible data storage. The platform includes advanced UI components with 3D effects, glassmorphism design, and particle backgrounds for an immersive user experience."
+                  : "The application follows a monorepo structure with separate frontend and backend directories. The frontend is built with React 18 and TypeScript, utilizing Vite for fast development builds. The backend uses Express.js with Prisma ORM for database operations, ensuring type-safe database queries and migrations."}
               </p>
             </div>
           </div>
@@ -403,15 +425,14 @@ const BlogPost = ({ blog, onClose }) => {
                   Installation Steps
                 </h4>
                 <div className="space-y-3">
-                  <div className="bg-gray-900 p-3 rounded-lg">
+                  <div className="bg-gray-900 p-3 rounded-lg overflow-x-auto">
                     <p className="text-neutral-400 text-sm mb-1">
                       1. Clone the repository
                     </p>
-                    <code className="text-green-400 text-sm">
+                    <code className="text-green-400 text-xs md:text-sm block">
                       git clone &lt;repository-url&gt;
                     </code>
-                    <br />
-                    <code className="text-green-400 text-sm">
+                    <code className="text-green-400 text-xs md:text-sm block">
                       cd government-services-platform
                     </code>
                   </div>
@@ -527,17 +548,17 @@ const BlogPost = ({ blog, onClose }) => {
                 <h4 className="font-medium text-white mb-2">
                   Environment Configuration
                 </h4>
-                <div className="bg-gray-900 p-3 rounded-lg space-y-1">
-                  <code className="text-green-400 text-sm block">
+                <div className="bg-gray-900 p-3 rounded-lg space-y-1 overflow-x-auto">
+                  <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
                     DATABASE_URL="postgresql://user:password@host:port/database"
                   </code>
-                  <code className="text-green-400 text-sm block">
+                  <code className="text-green-400 text-xs md:text-sm block">
                     JWT_SECRET="your-secure-jwt-secret"
                   </code>
-                  <code className="text-green-400 text-sm block">
+                  <code className="text-green-400 text-xs md:text-sm block">
                     NODE_ENV="production"
                   </code>
-                  <code className="text-green-400 text-sm block">
+                  <code className="text-green-400 text-xs md:text-sm block whitespace-nowrap">
                     CORS_ORIGIN="https://your-frontend-domain.com"
                   </code>
                 </div>
@@ -611,21 +632,45 @@ const BlogPost = ({ blog, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm">
       <motion.div
-        className="relative w-[90vw] max-w-6xl h-[85vh] border shadow-sm rounded-2xl bg-gradient-to-l from-midnight to-navy border-white/10 overflow-hidden"
+        className="relative w-[95vw] max-w-6xl h-[90vh] md:h-[85vh] border shadow-sm rounded-lg md:rounded-2xl bg-gradient-to-l from-midnight to-navy border-white/10 overflow-hidden"
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
       >
         <button
           onClick={onClose}
-          className="absolute p-2 rounded-sm top-5 right-5 bg-midnight hover:bg-gray-500 z-10"
+          className="absolute p-2 rounded-sm top-3 right-3 md:top-5 md:right-5 bg-midnight hover:bg-gray-500 z-10"
         >
-          <img src="assets/close.svg" className="w-6 h-6" />
+          <img src="assets/close.svg" className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
-        <div className="flex h-full">
-          {/* Sidebar */}
-          <div className="w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4">
-            <h2 className="text-xl font-bold text-white mb-6">{blog.title}</h2>
+        <div className="flex flex-col md:flex-row h-full">
+          {/* Mobile Header */}
+          <div className="md:hidden bg-gradient-to-r from-midnight to-navy border-b border-white/10 p-4">
+            <h2 className="text-lg font-bold text-white mb-3 pr-8">
+              {blog.title}
+            </h2>
+            <div className="flex overflow-x-auto space-x-2 pb-2">
+              {Object.entries(sections).map(([key, label]) => (
+                <button
+                  key={key}
+                  onClick={() => setActiveSection(key)}
+                  className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm transition-colors ${
+                    activeSection === key
+                      ? "bg-white/10 text-white"
+                      : "text-neutral-400 hover:text-white hover:bg-white/5"
+                  }`}
+                >
+                  {label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Sidebar */}
+          <div className="hidden md:block w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4">
+            <h2 className="text-xl font-bold text-white mb-6 pr-8">
+              {blog.title}
+            </h2>
             <nav className="space-y-2">
               {Object.entries(sections).map(([key, label]) => (
                 <button
@@ -645,7 +690,7 @@ const BlogPost = ({ blog, onClose }) => {
 
           {/* Content */}
           <div className="flex-1 overflow-y-auto custom-scrollbar">
-            <div className="p-6 h-full">
+            <div className="p-4 md:p-6 h-full">
               <div className="min-h-full">{renderContent()}</div>
             </div>
           </div>
