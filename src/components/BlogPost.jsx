@@ -352,51 +352,34 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                           but here we'll use rects for better control. */}
 
                       {/* p=0.5, n=20 (Blue) */}
-                      {[
-                        0.001, 0.01, 0.04, 0.12, 0.16, 0.18, 0.16, 0.12, 0.04,
-                        0.01, 0.001,
-                      ].map((val, i) => (
-                        <rect
-                          key={`b-${i}`}
-                          x={((i + 5) / 40) * 100 - 0.75}
-                          y={100 - (val / 0.25) * 100 - 0.75}
-                          width="1.5"
-                          height="1.5"
-                          rx="0.75"
-                          fill="#3b82f6"
-                        />
-                      ))}
+                      <path
+                        d="M 12.5 99.6 Q 25 0, 37.5 99.6"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        className="opacity-90"
+                      />
 
                       {/* p=0.7, n=20 (Green) */}
-                      {[
-                        0.01, 0.03, 0.07, 0.12, 0.17, 0.19, 0.18, 0.13, 0.08,
-                        0.03, 0.01,
-                      ].map((val, i) => (
-                        <rect
-                          key={`g-${i}`}
-                          x={((i + 9) / 40) * 100 - 0.75}
-                          y={100 - (val / 0.25) * 100 - 0.75}
-                          width="1.5"
-                          height="1.5"
-                          fill="#22c55e"
-                        />
-                      ))}
+                      <path
+                        d="M 22.5 96 Q 35 15, 47.5 96"
+                        fill="none"
+                        stroke="#22c55e"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        className="opacity-90"
+                      />
 
                       {/* p=0.5, n=40 (Red) */}
-                      {[
-                        0.005, 0.01, 0.02, 0.04, 0.06, 0.08, 0.11, 0.12, 0.13,
-                        0.12, 0.11, 0.08, 0.06, 0.04, 0.02, 0.01,
-                      ].map((val, i) => (
-                        <rect
-                          key={`r-${i}`}
-                          x={((i + 13) / 40) * 100 - 1}
-                          y={100 - (val / 0.25) * 100 - 0.6}
-                          width="2"
-                          height="1.2"
-                          rx="0.6"
-                          fill="#ef4444"
-                        />
-                      ))}
+                      <path
+                        d="M 32.5 98 Q 51 40, 70 96"
+                        fill="none"
+                        stroke="#ef4444"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        className="opacity-90"
+                      />
                     </svg>
 
                     {/* X-Axis Labels */}
@@ -554,8 +537,9 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         d="M 0 100 L 0 7.5 L 5 7.5 L 10 52.5 L 15 85 L 20 95 L 25 100"
                         fill="none"
                         stroke="#22d3ee"
-                        strokeWidth="0.5"
-                        strokeOpacity="0.5"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        strokeOpacity="0.8"
                       />
                       {[0.37, 0.37, 0.19, 0.06, 0.015].map((val, i) => (
                         <circle
@@ -572,8 +556,9 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         d="M 0 95 L 5 82 L 10 65 L 15 52 L 20 52 L 25 61 L 30 74 L 35 85 L 40 92 L 45 97"
                         fill="none"
                         stroke="#34d399"
-                        strokeWidth="0.5"
-                        strokeOpacity="0.5"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        strokeOpacity="0.8"
                       />
                       {[
                         0.018, 0.073, 0.146, 0.195, 0.195, 0.156, 0.104, 0.059,
@@ -593,8 +578,9 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         d="M 0 100 L 25 98 L 30 95 L 35 88 L 40 79 L 45 71 L 50 68 L 55 71 L 60 78 L 70 90 L 80 95 L 100 100"
                         fill="none"
                         stroke="#fbbf24"
-                        strokeWidth="0.5"
-                        strokeOpacity="0.5"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
+                        strokeOpacity="0.8"
                       />
                       {[
                         0.005, 0.01, 0.018, 0.035, 0.06, 0.09, 0.11, 0.125,
@@ -780,6 +766,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         fill="none"
                         stroke="#1e40af"
                         strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                         className="opacity-80"
                       />
 
@@ -789,6 +776,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         fill="none"
                         stroke="#ef4444"
                         strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                         className="opacity-80"
                       />
 
@@ -798,6 +786,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         fill="none"
                         stroke="#f59e0b"
                         strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                         className="opacity-80"
                       />
 
@@ -807,6 +796,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         fill="none"
                         stroke="#22c55e"
                         strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                         className="opacity-80"
                       />
                     </svg>
@@ -906,7 +896,8 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                     d="M 0 100 Q 50 0 100 100"
                     fill="none"
                     stroke="#ec4899"
-                    strokeWidth="2"
+                    strokeWidth="1.5"
+                    vectorEffect="non-scaling-stroke"
                   />
 
                   {/* Std Dev Lines */}
@@ -1038,6 +1029,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         fill="none"
                         stroke="#64748b"
                         strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                       />
                       {/* X-marks Labels */}
                       <line
@@ -1122,7 +1114,8 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                         d="M 5 90 C 25 90, 40 10, 50 10 S 75 90, 95 90"
                         fill="none"
                         stroke="#ec4899"
-                        strokeWidth="2"
+                        strokeWidth="1.5"
+                        vectorEffect="non-scaling-stroke"
                       />
                       {/* Z-marks Labels */}
                       <line
