@@ -3170,7 +3170,11 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
   };
 
   const content = (
-    <div className="flex flex-col md:flex-row h-full">
+    <div
+      className={`flex flex-col md:flex-row ${
+        isPage ? "min-h-full" : "h-full"
+      }`}
+    >
       {/* Mobile Header */}
       <div className="md:hidden bg-gradient-to-r from-midnight to-navy border-b border-white/10 p-4">
         <h2 className="text-lg font-bold text-white mb-3 pr-8">{blog.title}</h2>
@@ -3192,7 +3196,11 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
       </div>
 
       {/* Desktop Sidebar */}
-      <div className="hidden md:block w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4">
+      <div
+        className={`hidden md:block w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4 ${
+          isPage ? "sticky top-16 h-[calc(100vh-64px)]" : ""
+        }`}
+      >
         <h2 className="text-xl font-bold text-white mb-6 pr-8">{blog.title}</h2>
         <nav className="space-y-2">
           {Object.entries(sections).map(([key, label]) => (
@@ -3211,8 +3219,12 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
         </nav>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 overflow-y-auto custom-scrollbar">
+      {/* Content Area */}
+      <div
+        className={`flex-1 ${
+          isPage ? "overflow-visible" : "overflow-y-auto custom-scrollbar"
+        }`}
+      >
         <div className="p-4 md:p-6">
           <div className="min-h-full">{renderContent()}</div>
         </div>
@@ -3222,7 +3234,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
 
   if (isPage) {
     return (
-      <div className="relative w-full h-[calc(100vh-64px)] mt-16 md:mt-20 border-t border-white/10 bg-gradient-to-l from-midnight to-navy">
+      <div className="relative w-full min-h-[calc(100vh-64px)] mt-16 md:mt-20 border-t border-white/10 bg-gradient-to-l from-midnight to-navy overflow-visible">
         {content}
       </div>
     );
@@ -3237,23 +3249,12 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
       >
         <button
           onClick={onClose}
-          className="absolute p-2 rounded-full top-3 right-3 md:top-5 md:right-5 bg-navy/80 hover:bg-white/10 text-white transition-all z-20 border border-white/10 shadow-lg"
+          className="absolute flex items-center justify-center w-8 h-8 rounded-full top-3 right-3 md:top-5 md:right-5 bg-navy/80 hover:bg-white/10 text-white transition-all z-50 border border-white/10 shadow-lg group"
           title="Close"
         >
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="w-4 h-4 md:w-5 md:h-5"
-          >
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          </svg>
+          <span className="text-xl font-light leading-none group-hover:scale-110 transition-transform">
+            ✕
+          </span>
         </button>
 
         {content}
