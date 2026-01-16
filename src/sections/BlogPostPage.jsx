@@ -29,12 +29,14 @@ const BlogPostPage = () => {
     );
   }
 
-  // Check if this is a detailed blog post (Information Service or Hackathon Platform)
+  // Check if this is a detailed blog post
   const isDetailedBlog =
     blog.id === 102 ||
     blog.id === 103 ||
+    blog.id === 104 ||
     blog.title.includes("Information Service") ||
-    blog.title.includes("HackPub");
+    blog.title.includes("HackPub") ||
+    blog.title.includes("Probability");
 
   return (
     <div className="relative min-h-screen bg-black">

@@ -8,8 +8,10 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
   const isHackathonPlatform = blog.id === 103 || blog.title.includes("HackPub");
   const isGovernmentServices =
     blog.id === 102 || blog.title.includes("Government Services");
+  const isProbabilityBlog =
+    blog.id === 104 || blog.title.includes("Probability");
 
-  const sections = {
+  const defaultSections = {
     overview: "Overview",
     features: "Features",
     tech: "Technology Stack",
@@ -18,7 +20,1562 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
     deployment: "Deployment",
   };
 
+  const probabilitySections = {
+    basics: "1. Basics & PMF/PDF/CDF",
+    bernoulli: "2. Bernoulli Dist",
+    binomial: "3. Binomial Dist",
+    poisson: "4. Poisson Dist",
+    normal: "5. Normal/Gaussian",
+    std_normal: "6. Standard Normal",
+    uniform: "7. Uniform Dist",
+    log_normal: "8. Log-Normal",
+    power_law: "9. Power Law",
+    pareto: "10. Pareto & Central",
+  };
+
+  if (isProbabilityBlog && activeSection === "overview") {
+    setActiveSection("basics");
+  }
+
+  const sections = isProbabilityBlog ? probabilitySections : defaultSections;
+
+  const renderProbabilityContent = () => {
+    switch (activeSection) {
+      case "basics":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Probability Distribution Functions
+            </h3>
+            <p className="text-lg text-neutral-200 leading-relaxed">
+              A function that describes the likelihood of obtaining the possible
+              values that a random variable can assume.
+            </p>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-4">
+              <h4 className="text-xl font-semibold text-white mb-2">
+                1. Probability Mass Function (PMF)
+              </h4>
+              <p className="text-lg text-neutral-300 mb-4 leading-relaxed">
+                Used for <strong>Discrete Random Variables</strong>. It gives
+                the probability that a discrete random variable is exactly equal
+                to some value.
+              </p>
+              <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+                P(X = x) = f(x)
+              </div>
+              <p className="text-neutral-400 text-sm mt-3">
+                Example: Rolling a die. P(X=1) = 1/6.
+              </p>
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-4">
+              <h4 className="text-xl font-semibold text-white mb-2">
+                2. Probability Density Function (PDF)
+              </h4>
+              <p className="text-lg text-neutral-300 mb-4 leading-relaxed">
+                Used for <strong>Continuous Random Variables</strong>. The
+                probability of the variable falling within a particular range of
+                values is given by the area under the density function but
+                probability at an exact point is 0.
+              </p>
+              <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+                P(a ≤ X ≤ b) = ∫ from a to b f(x)dx
+              </div>
+              <p className="text-neutral-400 text-sm mt-3">
+                Example: Height of students in a class.
+              </p>
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-4">
+              <h4 className="text-xl font-semibold text-white mb-2">
+                3. Cumulative Distribution Function (CDF)
+              </h4>
+              <p className="text-lg text-neutral-300 mb-4 leading-relaxed">
+                Gives the probability that a random variable X will take a value
+                less than or equal to x.
+              </p>
+              <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+                F(x) = P(X ≤ x)
+              </div>
+              <p className="text-neutral-400 text-sm mt-3">
+                Applicable to both discrete and continuous variables.
+              </p>
+            </div>
+          </div>
+        );
+      case "bernoulli":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Bernoulli Distribution
+            </h3>
+            <span className="bg-indigo-600/30 text-indigo-300 px-3 py-1 rounded-full text-sm">
+              Discrete
+            </span>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              The Bernoulli Distribution is the foundation of all discrete
+              distributions. It represents a single trial of an experiment that
+              has exactly two possible outcomes: <strong>Success</strong>{" "}
+              (denoted as 1) and <strong>Failure</strong> (denoted as 0). It is
+              the simplest possible random variable, often used as a building
+              block for more complex distributions like the Binomial
+              Distribution.
+            </p>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-4 text-center">
+                Probability Mass Function (PMF) Visualization
+              </h4>
+              <div className="relative h-64 w-full flex items-end justify-center px-10 border-b border-l border-white/20">
+                {/* Y-Axis Labels */}
+                <div className="absolute -left-8 top-0 h-full flex flex-col justify-between text-[10px] text-neutral-500 py-1">
+                  <span>1.0</span>
+                  <span>0.8</span>
+                  <span>0.6</span>
+                  <span>0.4</span>
+                  <span>0.2</span>
+                  <span>0</span>
+                </div>
+
+                {/* Grid Lines */}
+                <div className="absolute inset-0 flex flex-col justify-between opacity-10 py-1 pointer-events-none">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="border-t border-white w-full" />
+                  ))}
+                </div>
+
+                {/* The Graph */}
+                <div className="relative w-full h-full flex justify-around items-end pb-0">
+                  {/* k = 0 */}
+                  <div className="relative flex items-end gap-2 px-4 h-full">
+                    <div
+                      className="w-1 bg-blue-500 rounded-t"
+                      style={{ height: "80%" }}
+                    ></div>
+                    <div
+                      className="w-1 bg-green-500 rounded-t"
+                      style={{ height: "50%" }}
+                    ></div>
+                    <div
+                      className="w-1 bg-red-500 rounded-t"
+                      style={{ height: "20%" }}
+                    ></div>
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-white font-mono">
+                      0
+                    </span>
+                  </div>
+
+                  {/* k = 1 */}
+                  <div className="relative flex items-end gap-2 px-4 h-full">
+                    <div
+                      className="w-1 bg-blue-500 rounded-t"
+                      style={{ height: "20%" }}
+                    ></div>
+                    <div
+                      className="w-1 bg-green-500 rounded-t"
+                      style={{ height: "50%" }}
+                    ></div>
+                    <div
+                      className="w-1 bg-red-500 rounded-t"
+                      style={{ height: "80%" }}
+                    ></div>
+                    <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 text-white font-mono">
+                      1
+                    </span>
+                  </div>
+                </div>
+
+                {/* Legend */}
+                <div className="absolute top-0 right-0 flex flex-col gap-1 bg-black/40 p-2 rounded border border-white/5 text-[10px]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-blue-500"></div>
+                    <span className="text-neutral-300">p = 0.2</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-green-500"></div>
+                    <span className="text-neutral-300">p = 0.5</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 bg-red-500"></div>
+                    <span className="text-neutral-300">p = 0.8</span>
+                  </div>
+                </div>
+
+                {/* X-Axis Label */}
+                <span className="absolute -right-6 -bottom-2 text-[10px] text-neutral-500">
+                  k
+                </span>
+                <span className="absolute -left-12 -top-6 text-[10px] text-neutral-500 rotate-[-90deg] origin-bottom-right">
+                  Wahrscheinlichkeit (P)
+                </span>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-2 mt-2">
+                  <li>
+                    <strong>p:</strong> Probability of Success
+                  </li>
+                  <li>
+                    <strong>Mean (E[X]):</strong> p
+                  </li>
+                  <li>
+                    <strong>Variance:</strong> p(1-p)
+                  </li>
+                  <li>
+                    <strong>Median:</strong> 0 if p &lt; 0.5, else 1
+                  </li>
+                  <li>
+                    <strong>Mode:</strong> 0 if p &lt; 0.5, else 1
+                  </li>
+                  <li>
+                    <strong>Std Dev:</strong> √p(1-p)
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Examples
+                </h4>
+                <div className="space-y-4 mt-3">
+                  <div>
+                    <p className="font-medium text-indigo-300 text-sm">
+                      1. Email Spam Detection
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      An incoming email is either <strong>Spam</strong> or{" "}
+                      <strong>Not Spam</strong>. This is a perfect Bernoulli
+                      example because each email is analyzed as an independent
+                      event with strictly two possible outcomes.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-indigo-300 text-sm">
+                      2. Quality Inspection
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      A tester checks a single chip on a circuit board to see if
+                      it is <strong>Defective</strong> or{" "}
+                      <strong>Functional</strong>. This illustrates a Bernoulli
+                      trial perfectly as it focuses on a single instance of a
+                      binary result.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "binomial":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Binomial Distribution
+            </h3>
+            <span className="bg-indigo-600/30 text-indigo-300 px-3 py-1 rounded-full text-sm">
+              Discrete
+            </span>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              The Binomial Distribution models the number of successes in a
+              sequence of <strong>n independent trials</strong>, each with its
+              own binary outcome (Success/Failure) and a constant probability of
+              success <strong>p</strong>. It essentially answers the question:
+              "If I repeat a Bernoulli trial n times, how many successes will I
+              see?"
+            </p>
+
+            <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+              P(X=k) = nCk * p^k * (1-p)^(n-k)
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-6 text-center">
+                Probability Mass Function (PMF) Comparison
+              </h4>
+              <div className="flex flex-col items-center">
+                {/* Legend Overlay - HTML based for better sizing control */}
+                <div className="flex flex-wrap justify-center gap-6 mb-6 text-xs md:text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-blue-500"></div>
+                    <span className="text-neutral-300">p=0.5, n=20</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 bg-green-500"></div>
+                    <span className="text-neutral-300">p=0.7, n=20</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-sm bg-red-500"></div>
+                    <span className="text-neutral-300">p=0.5, n=40</span>
+                  </div>
+                </div>
+
+                <div className="relative h-64 w-full px-12 pb-8">
+                  {/* Y-Axis Labels */}
+                  <div className="absolute left-0 top-0 h-[calc(100%-2rem)] flex flex-col justify-between text-[10px] text-neutral-500 py-1 items-end pr-2 w-10">
+                    <span>0.25</span>
+                    <span>0.20</span>
+                    <span>0.15</span>
+                    <span>0.10</span>
+                    <span>0.05</span>
+                    <span>0.00</span>
+                  </div>
+
+                  {/* Graph Area */}
+                  <div className="relative w-full h-full border-b border-l border-white/20">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Grid Lines */}
+                      {[0, 20, 40, 60, 80, 100].map((v) => (
+                        <line
+                          key={v}
+                          x1="0"
+                          y1={v}
+                          x2="100"
+                          y2={v}
+                          stroke="white"
+                          strokeWidth="0.1"
+                          strokeOpacity="0.1"
+                        />
+                      ))}
+
+                      {/* Data Points - Logic uses scaled coordinates to prevent stretching */}
+                      {/* Note: SVG circles/rects in 'preserveAspectRatio="none"' will stretch. 
+                          We use small absolute sizes or paths if we wanted perfect circles,
+                          but here we'll use rects for better control. */}
+
+                      {/* p=0.5, n=20 (Blue) */}
+                      {[
+                        0.001, 0.01, 0.04, 0.12, 0.16, 0.18, 0.16, 0.12, 0.04,
+                        0.01, 0.001,
+                      ].map((val, i) => (
+                        <rect
+                          key={`b-${i}`}
+                          x={((i + 5) / 40) * 100 - 0.75}
+                          y={100 - (val / 0.25) * 100 - 0.75}
+                          width="1.5"
+                          height="1.5"
+                          rx="0.75"
+                          fill="#3b82f6"
+                        />
+                      ))}
+
+                      {/* p=0.7, n=20 (Green) */}
+                      {[
+                        0.01, 0.03, 0.07, 0.12, 0.17, 0.19, 0.18, 0.13, 0.08,
+                        0.03, 0.01,
+                      ].map((val, i) => (
+                        <rect
+                          key={`g-${i}`}
+                          x={((i + 9) / 40) * 100 - 0.75}
+                          y={100 - (val / 0.25) * 100 - 0.75}
+                          width="1.5"
+                          height="1.5"
+                          fill="#22c55e"
+                        />
+                      ))}
+
+                      {/* p=0.5, n=40 (Red) */}
+                      {[
+                        0.005, 0.01, 0.02, 0.04, 0.06, 0.08, 0.11, 0.12, 0.13,
+                        0.12, 0.11, 0.08, 0.06, 0.04, 0.02, 0.01,
+                      ].map((val, i) => (
+                        <rect
+                          key={`r-${i}`}
+                          x={((i + 13) / 40) * 100 - 1}
+                          y={100 - (val / 0.25) * 100 - 0.6}
+                          width="2"
+                          height="1.2"
+                          rx="0.6"
+                          fill="#ef4444"
+                        />
+                      ))}
+                    </svg>
+
+                    {/* X-Axis Labels */}
+                    <div className="absolute left-0 -bottom-6 w-full flex justify-between text-[10px] text-neutral-500">
+                      <span>0</span>
+                      <span>10</span>
+                      <span>20</span>
+                      <span>30</span>
+                      <span>40</span>
+                    </div>
+
+                    {/* Axis Labels */}
+                    <span className="absolute -right-4 -bottom-2 text-[10px] text-neutral-500">
+                      k
+                    </span>
+                    <span className="absolute -left-12 -top-6 text-[10px] text-neutral-500 rotate-[-90deg] origin-bottom-right whitespace-nowrap">
+                      Probability (P)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-2 mt-2">
+                  <li>
+                    <strong>n:</strong> Number of Trials
+                  </li>
+                  <li>
+                    <strong>p:</strong> Probability of Success
+                  </li>
+                  <li>
+                    <strong>Mean:</strong> np
+                  </li>
+                  <li>
+                    <strong>Variance:</strong> np(1-p)
+                  </li>
+                  <li>
+                    <strong>Std Dev:</strong> √np(1-p)
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Examples
+                </h4>
+                <div className="space-y-4 mt-3">
+                  <div>
+                    <p className="font-medium text-emerald-300 text-sm">
+                      1. Manufacturing & Quality Control
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      A factory produces 500 phone screens a day. If 2% are
+                      known to be defective (p=0.02), we use Binomial
+                      Distribution to predict the probability of finding exactly
+                      5 defective screens in a random batch.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-emerald-300 text-sm">
+                      2. Clinical Trials
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      Testing a new drug on 100 people. If the historical
+                      success rate is 70% (p=0.70), the distribution helps
+                      calculate the likelihood that at least 80 people will show
+                      improvement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "poisson":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Poisson Distribution
+            </h3>
+            <span className="bg-indigo-600/30 text-indigo-300 px-3 py-1 rounded-full text-sm">
+              Discrete
+            </span>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              The Poisson Distribution expresses the probability of a given
+              number of events occurring in a <strong>fixed interval</strong> of
+              time or space. It is used for events that happen independently and
+              at a constant average rate. Unlike the Binomial distribution, it
+              doesn't have a fixed number of trials (n)—it focuses on frequency
+              within a continuous window.
+            </p>
+
+            <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+              P(X=k) = (λ^k * e^-λ) / k!
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-6 text-center">
+                Probability Mass Function (PMF) by λ (Lambda)
+              </h4>
+              <div className="flex flex-col items-center">
+                {/* Legend Overlay */}
+                <div className="flex flex-wrap justify-center gap-6 mb-6 text-xs md:text-sm">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+                    <span className="text-neutral-300">λ = 1</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                    <span className="text-neutral-300">λ = 4</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <span className="text-neutral-300">λ = 10</span>
+                  </div>
+                </div>
+
+                <div className="relative h-64 w-full px-12 pb-8">
+                  {/* Y-Axis Labels */}
+                  <div className="absolute left-0 top-0 h-[calc(100%-2rem)] flex flex-col justify-between text-[10px] text-neutral-500 py-1 items-end pr-2 w-10">
+                    <span>0.40</span>
+                    <span>0.30</span>
+                    <span>0.20</span>
+                    <span>0.10</span>
+                    <span>0.00</span>
+                  </div>
+
+                  {/* Graph Area */}
+                  <div className="relative w-full h-full border-b border-l border-white/20">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Grid Lines */}
+                      {[0, 25, 50, 75, 100].map((v) => (
+                        <line
+                          key={v}
+                          x1="0"
+                          y1={v}
+                          x2="100"
+                          y2={v}
+                          stroke="white"
+                          strokeWidth="0.1"
+                          strokeOpacity="0.1"
+                        />
+                      ))}
+
+                      {/* λ = 1 (Cyan) */}
+                      <path
+                        d="M 0 100 L 0 7.5 L 5 7.5 L 10 52.5 L 15 85 L 20 95 L 25 100"
+                        fill="none"
+                        stroke="#22d3ee"
+                        strokeWidth="0.5"
+                        strokeOpacity="0.5"
+                      />
+                      {[0.37, 0.37, 0.19, 0.06, 0.015].map((val, i) => (
+                        <circle
+                          key={`l1-${i}`}
+                          cx={((i * 5) / 20) * 100}
+                          cy={100 - (val / 0.4) * 100}
+                          r="1"
+                          fill="#22d3ee"
+                        />
+                      ))}
+
+                      {/* λ = 4 (Emerald) */}
+                      <path
+                        d="M 0 95 L 5 82 L 10 65 L 15 52 L 20 52 L 25 61 L 30 74 L 35 85 L 40 92 L 45 97"
+                        fill="none"
+                        stroke="#34d399"
+                        strokeWidth="0.5"
+                        strokeOpacity="0.5"
+                      />
+                      {[
+                        0.018, 0.073, 0.146, 0.195, 0.195, 0.156, 0.104, 0.059,
+                        0.03, 0.013,
+                      ].map((val, i) => (
+                        <circle
+                          key={`l4-${i}`}
+                          cx={((i * 5) / 20) * 100}
+                          cy={100 - (val / 0.4) * 100}
+                          r="1"
+                          fill="#34d399"
+                        />
+                      ))}
+
+                      {/* λ = 10 (Amber) */}
+                      <path
+                        d="M 0 100 L 25 98 L 30 95 L 35 88 L 40 79 L 45 71 L 50 68 L 55 71 L 60 78 L 70 90 L 80 95 L 100 100"
+                        fill="none"
+                        stroke="#fbbf24"
+                        strokeWidth="0.5"
+                        strokeOpacity="0.5"
+                      />
+                      {[
+                        0.005, 0.01, 0.018, 0.035, 0.06, 0.09, 0.11, 0.125,
+                        0.125, 0.11, 0.09, 0.07, 0.05, 0.035, 0.02, 0.01,
+                      ].map((val, i) => (
+                        <circle
+                          key={`l10-${i}`}
+                          cx={(((i + 2) * 5) / 20) * 100}
+                          cy={100 - (val / 0.4) * 100}
+                          r="1"
+                          fill="#fbbf24"
+                        />
+                      ))}
+                    </svg>
+
+                    {/* X-Axis Labels */}
+                    <div className="absolute left-0 -bottom-6 w-full flex justify-between text-[10px] text-neutral-500">
+                      <span>0</span>
+                      <span>5</span>
+                      <span>10</span>
+                      <span>15</span>
+                      <span>20</span>
+                    </div>
+
+                    {/* Axis Labels */}
+                    <span className="absolute -right-4 -bottom-2 text-[10px] text-neutral-500">
+                      k
+                    </span>
+                    <span className="absolute -left-12 -top-6 text-[10px] text-neutral-500 rotate-[-90deg] origin-bottom-right whitespace-nowrap">
+                      Probability (P)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-2 mt-2">
+                  <li>
+                    <strong>λ (Lambda):</strong> The average rate parameter
+                  </li>
+                  <li>
+                    <strong>Mean:</strong> λ
+                  </li>
+                  <li>
+                    <strong>Variance:</strong> λ
+                  </li>
+                  <li>
+                    <strong>Std Dev:</strong> √λ
+                  </li>
+                  <li>
+                    <strong>Range:</strong> [0, ∞) (Discrete)
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Examples
+                </h4>
+                <div className="space-y-4 mt-3">
+                  <div>
+                    <p className="font-medium text-amber-300 text-sm">
+                      1. Network Traffic Management
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      Estimating the number of packet requests hitting a router
+                      per millisecond. If the average is 10, the distribution
+                      helps predict the risk of "packet bursts" that could lead
+                      to crashes.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-amber-300 text-sm">
+                      2. Rare Disease Modeling
+                    </p>
+                    <p className="text-neutral-300 text-sm mt-1">
+                      Epidemiologists use Poisson to calculate the probability
+                      of a specific number of rare health cases occurring in a
+                      large population over a year.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "normal":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Normal (Gaussian) Distribution
+            </h3>
+            <span className="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-sm">
+              Continuous
+            </span>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              The Normal Distribution, also known as the Gaussian Distribution
+              or "Bell Curve," is the most important probability distribution in
+              statistics. It describes a symmetric, continuous probability
+              distribution where most observations cluster around the central
+              peak (the mean), and probabilities for values further from the
+              mean taper off equally in both directions. It is the bedrock of
+              the <strong>Central Limit Theorem</strong>, explaining why many
+              natural and social phenomena follow this specific shape.
+            </p>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-6 text-center">
+                Probability Density Function (PDF) Comparison
+              </h4>
+              <div className="flex flex-col items-center">
+                {/* Legend Overlay */}
+                <div className="flex flex-wrap justify-center gap-4 mb-6 text-[10px] md:text-xs">
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-0.5 bg-[#1e40af]"></div>
+                    <span className="text-neutral-300">μ=0, σ²=0.2</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-0.5 bg-[#ef4444]"></div>
+                    <span className="text-neutral-300">μ=0, σ²=1.0</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-0.5 bg-[#f59e0b]"></div>
+                    <span className="text-neutral-300">μ=0, σ²=5.0</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-0.5 bg-[#22c55e]"></div>
+                    <span className="text-neutral-300">μ=-2, σ²=0.5</span>
+                  </div>
+                </div>
+
+                <div className="relative h-64 w-full px-12 pb-8">
+                  {/* Y-Axis Labels */}
+                  <div className="absolute left-0 top-0 h-[calc(100%-2rem)] flex flex-col justify-between text-[10px] text-neutral-500 py-1 items-end pr-2 w-10">
+                    <span>1.0</span>
+                    <span>0.8</span>
+                    <span>0.6</span>
+                    <span>0.4</span>
+                    <span>0.2</span>
+                    <span>0.0</span>
+                  </div>
+
+                  <div className="relative w-full h-full border-b border-l border-white/20">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Grid Lines */}
+                      {[0, 25, 50, 75, 100].map((v) => (
+                        <line
+                          key={v}
+                          x1="0"
+                          y1={v}
+                          x2="100"
+                          y2={v}
+                          stroke="white"
+                          strokeWidth="0.1"
+                          strokeOpacity="0.1"
+                        />
+                      ))}
+                      {[20, 40, 60, 80].map((v) => (
+                        <line
+                          key={v}
+                          x1={v}
+                          y1="0"
+                          x2={v}
+                          y2="100"
+                          stroke="white"
+                          strokeWidth="0.1"
+                          strokeOpacity="0.1"
+                        />
+                      ))}
+
+                      {/* Normal Distribution Paths (simplified paths for visualization) */}
+                      {/* μ=0, σ2=0.2 (Blue - Sharp peak) */}
+                      <path
+                        d="M 0 100 Q 50 -100 100 100"
+                        fill="none"
+                        stroke="#1e40af"
+                        strokeWidth="1.5"
+                        className="opacity-80"
+                      />
+
+                      {/* μ=0, σ2=1.0 (Red - Standard) */}
+                      <path
+                        d="M 0 100 Q 50 20 100 100"
+                        fill="none"
+                        stroke="#ef4444"
+                        strokeWidth="1.5"
+                        className="opacity-80"
+                      />
+
+                      {/* μ=0, σ2=5.0 (Orange - Flat) */}
+                      <path
+                        d="M 0 100 C 20 95, 80 95, 100 100"
+                        fill="none"
+                        stroke="#f59e0b"
+                        strokeWidth="1.5"
+                        className="opacity-80"
+                      />
+
+                      {/* μ=-2, σ2=0.5 (Green - Shifted) */}
+                      <path
+                        d="M 0 100 Q 30 10 60 100"
+                        fill="none"
+                        stroke="#22c55e"
+                        strokeWidth="1.5"
+                        className="opacity-80"
+                      />
+                    </svg>
+
+                    {/* X-Axis Labels */}
+                    <div className="absolute left-0 -bottom-6 w-full flex justify-between text-[10px] text-neutral-500 px-0">
+                      <span>-5</span>
+                      <span>-4</span>
+                      <span>-3</span>
+                      <span>-2</span>
+                      <span>-1</span>
+                      <span>0</span>
+                      <span>1</span>
+                      <span>2</span>
+                      <span>3</span>
+                      <span>4</span>
+                      <span>5</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-3 mt-3">
+                  <li>
+                    <strong>μ (Mean):</strong> The center or peak of the
+                    distribution.
+                  </li>
+                  <li>
+                    <strong>σ² (Variance):</strong> How spread out the data is.
+                  </li>
+                  <li>
+                    <strong>σ (Std Dev):</strong> The average distance from the
+                    mean. Controls the width of the bell.
+                  </li>
+                  <li>
+                    <strong>Symmetry:</strong> Mean = Median = Mode.
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Examples
+                </h4>
+                <div className="space-y-4 mt-3 text-sm">
+                  <div>
+                    <p className="font-medium text-pink-300">
+                      1. Biological Traits
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      Human height, weight, and blood pressure follow a normal
+                      distribution, where most people are average and extremes
+                      (very tall or very short) are increasingly rare.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-pink-300">
+                      2. Standardized Testing
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      IQ scores and Exam scores (like SATs) are designed to fit
+                      a normal distribution curve to allow for comparative
+                      ranking.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-4 text-center text-lg">
+                The Empirical Rule (68-95-99.7)
+              </h4>
+              <div className="relative h-48 w-full px-12 mb-4">
+                <svg
+                  className="w-full h-full"
+                  viewBox="0 0 100 100"
+                  preserveAspectRatio="none"
+                >
+                  {/* Shaded Regions */}
+                  <path
+                    d="M 20 100 Q 50 0 80 100 Z"
+                    fill="rgba(236, 72, 153, 0.1)"
+                  />
+                  <path
+                    d="M 35 100 Q 50 0 65 100 Z"
+                    fill="rgba(236, 72, 153, 0.2)"
+                  />
+
+                  {/* Curve */}
+                  <path
+                    d="M 0 100 Q 50 0 100 100"
+                    fill="none"
+                    stroke="#ec4899"
+                    strokeWidth="2"
+                  />
+
+                  {/* Std Dev Lines */}
+                  <line
+                    x1="50"
+                    y1="0"
+                    x2="50"
+                    y2="100"
+                    stroke="white"
+                    strokeWidth="0.5"
+                    strokeDasharray="2,2"
+                  />
+                  <line
+                    x1="65"
+                    y1="30"
+                    x2="65"
+                    y2="100"
+                    stroke="white"
+                    strokeWidth="0.3"
+                    strokeDasharray="1,1"
+                  />
+                  <line
+                    x1="35"
+                    y1="30"
+                    x2="35"
+                    y2="100"
+                    stroke="white"
+                    strokeWidth="0.3"
+                    strokeDasharray="1,1"
+                  />
+                  <line
+                    x1="80"
+                    y1="80"
+                    x2="80"
+                    y2="100"
+                    stroke="white"
+                    strokeWidth="0.3"
+                    strokeDasharray="1,1"
+                  />
+                  <line
+                    x1="20"
+                    y1="80"
+                    x2="20"
+                    y2="100"
+                    stroke="white"
+                    strokeWidth="0.3"
+                    strokeDasharray="1,1"
+                  />
+                </svg>
+                {/* Labels */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="flex flex-col items-center">
+                    <span className="text-[10px] text-pink-300 font-bold bg-black/50 px-1">
+                      68%
+                    </span>
+                    <div className="w-12 border-b border-pink-400/50 mt-1"></div>
+                  </div>
+                </div>
+              </div>
+              <ul className="text-neutral-300 text-sm space-y-2 leading-relaxed">
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-pink-400"></div>
+                  <span>
+                    <strong>68%</strong> of data falls within{" "}
+                    <strong>1σ</strong> (one standard deviation) of the mean.
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-pink-500"></div>
+                  <span>
+                    <strong>95%</strong> of data falls within{" "}
+                    <strong>2σ</strong> (two standard deviations) of the mean.
+                  </span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-pink-600"></div>
+                  <span>
+                    <strong>99.7%</strong> of data falls within{" "}
+                    <strong>3σ</strong> (three standard deviations) of the mean.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        );
+      case "std_normal":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Standard Normal Distribution (Z-Distribution)
+            </h3>
+            <div className="flex items-center gap-3">
+              <span className="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-sm">
+                Continuous
+              </span>
+              <span className="text-neutral-500 text-sm">μ = 0, σ = 1</span>
+            </div>
+
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              The Standard Normal Distribution is a special case of the Normal
+              Distribution where the <strong>mean is 0</strong> and the{" "}
+              <strong>standard deviation is 1</strong>. It serves as a universal
+              benchmark, allowing statisticians to compare scores from entirely
+              different datasets on a single, unified scale.
+            </p>
+
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-8 text-center text-xl">
+                The Concept of Standardization
+              </h4>
+
+              <div className="flex flex-col md:flex-row items-center justify-around gap-12">
+                {/* Raw Distribution (Left) */}
+                <div className="flex-1 w-full max-w-xs text-center">
+                  <div className="relative h-44 w-full">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Area Shading */}
+                      <path
+                        d="M 25 90 C 30 70, 35 45, 45 45 L 45 90 Z"
+                        fill="rgba(59, 130, 246, 0.2)"
+                      />
+                      {/* Curve */}
+                      <path
+                        d="M 5 90 C 20 90, 35 40, 50 40 S 80 90, 95 90"
+                        fill="none"
+                        stroke="#64748b"
+                        strokeWidth="1.5"
+                      />
+                      {/* X-marks Labels */}
+                      <line
+                        x1="25"
+                        y1="90"
+                        x2="25"
+                        y2="95"
+                        stroke="#3b82f6"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1="45"
+                        y1="90"
+                        x2="45"
+                        y2="95"
+                        stroke="#3b82f6"
+                        strokeWidth="1"
+                      />
+                      {/* Mean line */}
+                      <line
+                        x1="50"
+                        y1="40"
+                        x2="50"
+                        y2="90"
+                        stroke="white"
+                        strokeWidth="0.5"
+                        strokeDasharray="3,3"
+                      />
+                      <line
+                        x1="0"
+                        y1="90"
+                        x2="100"
+                        y2="90"
+                        stroke="white"
+                        strokeWidth="0.5"
+                      />
+                    </svg>
+                    {/* Bottom Labels */}
+                    <div className="absolute -bottom-6 flex w-full justify-between px-2 text-[10px]">
+                      <span className="text-blue-400">x₁</span>
+                      <span className="text-blue-400 ml-6">x₂</span>
+                      <span className="text-white">μ</span>
+                      <span className="text-transparent">0</span>
+                    </div>
+                  </div>
+                  <p className="mt-8 text-neutral-400 text-sm font-semibold tracking-wide">
+                    Standard Distribution
+                  </p>
+                </div>
+
+                {/* Center Bridge (Formula) */}
+                <div className="flex flex-col items-center gap-4">
+                  <div className="bg-pink-600/20 p-5 rounded-2xl border border-pink-500/30 text-center shadow-lg shadow-pink-900/10">
+                    <h5 className="text-pink-400 text-[10px] uppercase font-bold tracking-[0.2em] mb-2">
+                      Z-Score Formula
+                    </h5>
+                    <p className="text-white font-bold text-2xl tracking-tighter italic">
+                      z = (x - μ) / σ
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="h-[1px] w-8 bg-neutral-700"></div>
+                    <div className="w-2 h-2 rotate-45 border-t border-r border-neutral-600"></div>
+                  </div>
+                </div>
+
+                {/* Z-Distribution (Right) */}
+                <div className="flex-1 w-full max-w-xs text-center">
+                  <div className="relative h-44 w-full">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Area Shading */}
+                      <path
+                        d="M 25 90 C 30 60, 40 10, 50 10 L 50 90 L 25 90 Z"
+                        fill="rgba(236, 72, 153, 0.2)"
+                      />
+                      {/* Curve */}
+                      <path
+                        d="M 5 90 C 25 90, 40 10, 50 10 S 75 90, 95 90"
+                        fill="none"
+                        stroke="#ec4899"
+                        strokeWidth="2"
+                      />
+                      {/* Z-marks Labels */}
+                      <line
+                        x1="25"
+                        y1="90"
+                        x2="25"
+                        y2="95"
+                        stroke="#ec4899"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1="40"
+                        y1="90"
+                        x2="40"
+                        y2="95"
+                        stroke="#ec4899"
+                        strokeWidth="1"
+                      />
+                      {/* Mean line (0) */}
+                      <line
+                        x1="50"
+                        y1="10"
+                        x2="50"
+                        y2="90"
+                        stroke="white"
+                        strokeWidth="0.5"
+                        strokeDasharray="3,3"
+                      />
+                      <line
+                        x1="0"
+                        y1="90"
+                        x2="100"
+                        y2="90"
+                        stroke="white"
+                        strokeWidth="0.5"
+                      />
+                    </svg>
+                    {/* Bottom Labels */}
+                    <div className="absolute -bottom-6 flex w-full justify-between px-2 text-[10px]">
+                      <span className="text-pink-400">z₁</span>
+                      <span className="text-pink-400 ml-10">z₂</span>
+                      <span className="text-white">0</span>
+                      <span className="text-transparent">0</span>
+                    </div>
+                  </div>
+                  <p className="mt-8 text-neutral-400 text-sm font-semibold tracking-wide">
+                    Standard Normal (Z)
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-12 bg-black/20 p-4 rounded-lg text-sm text-neutral-300 leading-relaxed border-l-2 border-pink-500">
+                <p>
+                  Standardization shifts the distribution so the{" "}
+                  <strong>Mean (μ) becomes 0</strong> and rescales it so the{" "}
+                  <strong>Standard Deviation (σ) becomes 1</strong>. This
+                  transforms any value \( x \) into a \( z \)-score,
+                  representing how many standard deviations it is from the mean.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-3 mt-3 text-sm">
+                  <li>
+                    <strong>μ (Mean):</strong> Always <strong>0</strong> in a
+                    standard normal distribution.
+                  </li>
+                  <li>
+                    <strong>σ² (Variance):</strong> Always <strong>1</strong>{" "}
+                    (no variance change).
+                  </li>
+                  <li>
+                    <strong>σ (Std Dev):</strong> Always <strong>1</strong> (the
+                    width of the Bell Curve).
+                  </li>
+                  <li>
+                    <strong>Area:</strong> The total area under the curve is
+                    always equal to <strong>1.0</strong>.
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Example
+                </h4>
+                <div className="mt-3 text-sm">
+                  <p className="font-medium text-pink-300 italic">
+                    Comparing different metrics
+                  </p>
+                  <p className="text-neutral-300 mt-2 leading-relaxed">
+                    Imagine comparing a fish's <strong>weight (kg)</strong> to
+                    its <strong>length (cm)</strong>. Since they use different
+                    units, you can't compare them directly. By converting both
+                    to Z-scores, you can tell which fish is more "extreme" in
+                    weight vs. length relative to its population.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "uniform":
+        return (
+          <div className="space-y-12">
+            <h3 className="text-2xl font-bold text-white mb-4 italic border-b border-white/10 pb-2">
+              Uniform Distribution
+            </h3>
+
+            {/* Continuous Section */}
+            <div className="space-y-6">
+              <span className="bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
+                Continuous Uniform
+              </span>
+              <p className="text-lg text-neutral-200 leading-relaxed">
+                The Continuous Uniform Distribution describes an experiment
+                where there is an <strong>arbitrary outcome</strong> within a
+                specific range $[a, b]$, and every single value in that range
+                has an equal probability density.
+              </p>
+
+              {/* Continuous Graph */}
+              <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+                <h4 className="text-white font-semibold mb-6 text-center text-sm">
+                  Probability Density Function (PDF)
+                </h4>
+                <div className="relative h-48 w-full max-w-md mx-auto px-12">
+                  <svg
+                    className="w-full h-full overflow-visible"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    {/* Rectangle Shading */}
+                    <rect
+                      x="30"
+                      y="30"
+                      width="40"
+                      height="60"
+                      fill="rgba(59, 130, 246, 0.2)"
+                      stroke="#3b82f6"
+                      strokeWidth="2"
+                    />
+                    {/* Axis */}
+                    <line
+                      x1="0"
+                      y1="90"
+                      x2="100"
+                      y2="90"
+                      stroke="white"
+                      strokeWidth="0.5"
+                    />
+                    <line
+                      x1="10"
+                      y1="10"
+                      x2="10"
+                      y2="90"
+                      stroke="white"
+                      strokeWidth="0.5"
+                    />
+                    {/* Horizontal Dashed Line for 1/(b-a) */}
+                    <line
+                      x1="10"
+                      y1="30"
+                      x2="30"
+                      y2="30"
+                      stroke="white"
+                      strokeWidth="0.5"
+                      strokeDasharray="2,2"
+                    />
+                    {/* Labels */}
+                    <text
+                      x="30"
+                      y="98"
+                      fill="white"
+                      fontSize="6"
+                      textAnchor="middle"
+                    >
+                      a
+                    </text>
+                    <text
+                      x="70"
+                      y="98"
+                      fill="white"
+                      fontSize="6"
+                      textAnchor="middle"
+                    >
+                      b
+                    </text>
+                    <text
+                      x="5"
+                      y="32"
+                      fill="white"
+                      fontSize="5"
+                      textAnchor="end"
+                    >
+                      1/(b-a)
+                    </text>
+                  </svg>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Key Statistics
+                  </h4>
+                  <ul className="text-neutral-300 space-y-2 mt-4 text-sm">
+                    <li>
+                      <strong>Mean:</strong> (a + b) / 2
+                    </li>
+                    <li>
+                      <strong>Median:</strong> (a + b) / 2
+                    </li>
+                    <li>
+                      <strong>Variance:</strong> (b - a)² / 12
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Real Life Example
+                  </h4>
+                  <p className="text-neutral-300 mt-4 text-sm leading-relaxed">
+                    <strong>Waiting for a Bus:</strong> If a bus arrives exactly
+                    every 20 minutes, and you arrive randomly, your wait time is
+                    uniformly distributed between 0 and 20 minutes.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Discrete Section */}
+            <div className="space-y-6 pt-10 border-t border-white/10">
+              <span className="bg-green-600/30 text-green-300 px-3 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
+                Discrete Uniform
+              </span>
+              <p className="text-lg text-neutral-200 leading-relaxed">
+                The Discrete Uniform Distribution occurs when there are a{" "}
+                <strong>finite number of outcomes</strong>, all of which are
+                equally likely to occur (e.g., rolling a fair die).
+              </p>
+
+              {/* Discrete Graph */}
+              <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+                <h4 className="text-white font-semibold mb-6 text-center text-sm">
+                  Probability Mass Function (PMF)
+                </h4>
+                <div className="relative h-48 w-full max-w-md mx-auto px-12">
+                  <svg
+                    className="w-full h-full overflow-visible"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    {/* Stems */}
+                    {[20, 35, 50, 65, 80].map((x) => (
+                      <g key={x}>
+                        <line
+                          x1={x}
+                          y1="90"
+                          x2={x}
+                          y2="40"
+                          stroke="#22c55e"
+                          strokeWidth="0.5"
+                          strokeDasharray="2,2"
+                        />
+                        <circle cx={x} cy="40" r="2" fill="#22c55e" />
+                      </g>
+                    ))}
+                    {/* Axis */}
+                    <line
+                      x1="0"
+                      y1="90"
+                      x2="100"
+                      y2="90"
+                      stroke="white"
+                      strokeWidth="0.5"
+                    />
+                    <line
+                      x1="10"
+                      y1="10"
+                      x2="10"
+                      y2="90"
+                      stroke="white"
+                      strokeWidth="0.5"
+                    />
+                    {/* Labels */}
+                    <text
+                      x="20"
+                      y="98"
+                      fill="white"
+                      fontSize="6"
+                      textAnchor="middle"
+                    >
+                      a
+                    </text>
+                    <text
+                      x="80"
+                      y="98"
+                      fill="white"
+                      fontSize="6"
+                      textAnchor="middle"
+                    >
+                      b
+                    </text>
+                    <text
+                      x="5"
+                      y="42"
+                      fill="white"
+                      fontSize="5"
+                      textAnchor="end"
+                    >
+                      1/n
+                    </text>
+                  </svg>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Key Statistics
+                  </h4>
+                  <ul className="text-neutral-300 space-y-2 mt-4 text-sm">
+                    <li>
+                      <strong>Mean:</strong> (n + 1) / 2 (for a=1 to b=n)
+                    </li>
+                    <li>
+                      <strong>Median:</strong> (n + 1) / 2
+                    </li>
+                    <li>
+                      <strong>Variance:</strong> (n² - 1) / 12
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Real Life Example
+                  </h4>
+                  <p className="text-neutral-300 mt-4 text-sm leading-relaxed">
+                    <strong>Rolling a Die:</strong> When rolling a fair 6-sided
+                    die, each number (1, 2, 3, 4, 5, 6) has an identical
+                    probability of exactly 1/6.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      case "log_normal":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Log-Normal Distribution
+            </h3>
+            <span className="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-sm">
+              Continuous
+            </span>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              A random variable X is log-normally distributed if ln(X) follows a
+              normal distribution. The distribution is skewed to the right.
+            </p>
+
+            <div className="bg-white/5 p-4 rounded border border-white/10">
+              <h4 className="font-semibold text-white text-lg">
+                Real Life Example
+              </h4>
+              <p className="text-neutral-300 text-sm mt-3 leading-relaxed">
+                Income distribution, Stock prices (cannot be negative), Length
+                of comments on online forums.
+              </p>
+            </div>
+          </div>
+        );
+      case "power_law":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Power Law Distribution
+            </h3>
+            <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+              Also known as the 80/20 rule (Pareto principle). A functional
+              relationship between two quantities, where a relative change in
+              one results in a proportional relative change in the other.
+            </p>
+            <p className="text-lg text-neutral-300 italic">
+              "The rich get richer."
+            </p>
+
+            <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
+              P(x) ~ x^(-α)
+            </div>
+
+            <div className="bg-white/5 p-4 rounded border border-white/10 mt-4">
+              <h4 className="font-semibold text-white text-lg">
+                Real Life Example
+              </h4>
+              <p className="text-neutral-300 text-sm mt-3 leading-relaxed">
+                Followers on social media, City populations, Word frequency
+                (Zipf's law).
+              </p>
+            </div>
+          </div>
+        );
+      case "pareto":
+        return (
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Pareto & Central Limit Theorem
+            </h3>
+
+            <div className="mb-8">
+              <h4 className="text-xl font-semibold text-white mb-2">
+                Pareto Distribution
+              </h4>
+              <p className="text-lg text-neutral-200 leading-relaxed">
+                A specific power-law probability distribution used in
+                description of social, quality control, scientific, geophysical,
+                actuarial, and many other types of observable phenomena.
+              </p>
+              <p className="text-neutral-300 mt-3">
+                <strong>Mean:</strong> (α * xm) / (α - 1) for α &gt; 1.
+              </p>
+            </div>
+
+            <div className="border-t border-white/10 pt-6">
+              <h4 className="text-xl font-semibold text-white mb-2">
+                Central Limit Theorem (CLT)
+              </h4>
+              <p className="text-lg text-neutral-200 mb-4 leading-relaxed">
+                As sample size (n) increases, the distribution of sample means
+                approaches a Normal Distribution, regardless of the population's
+                distribution.
+              </p>
+              <ul className="list-disc list-inside text-neutral-300 space-y-2">
+                <li>Ideally n ≥ 30</li>
+                <li>Foundational to hypothesis testing.</li>
+              </ul>
+            </div>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
+
   const renderContent = () => {
+    if (isProbabilityBlog) {
+      return renderProbabilityContent();
+    }
     switch (activeSection) {
       case "overview":
         return (
@@ -982,7 +2539,7 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
 
       {/* Content */}
       <div className="flex-1 overflow-y-auto custom-scrollbar">
-        <div className="p-4 md:p-6 h-full">
+        <div className="p-4 md:p-6">
           <div className="min-h-full">{renderContent()}</div>
         </div>
       </div>
@@ -1006,9 +2563,23 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
       >
         <button
           onClick={onClose}
-          className="absolute p-2 rounded-sm top-3 right-3 md:top-5 md:right-5 bg-midnight hover:bg-gray-500 z-10"
+          className="absolute p-2 rounded-full top-3 right-3 md:top-5 md:right-5 bg-navy/80 hover:bg-white/10 text-white transition-all z-20 border border-white/10 shadow-lg"
+          title="Close"
         >
-          <img src="assets/close.svg" className="w-5 h-5 md:w-6 md:h-6" />
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="w-4 h-4 md:w-5 md:h-5"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
         </button>
 
         {content}

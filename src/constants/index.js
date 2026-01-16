@@ -270,6 +270,26 @@ export const myBlogs = [
       { id: 4, name: "Node.js", path: "/assets/logos/nodejs.svg" },
     ],
   },
+  {
+    id: 104,
+    title: "Probability for Data Science: A Comprehensive Guide",
+    description:
+      "A deep dive into probability distributions essential for Data Science. From PMF/PDF/CDF to complex distributions like Poisson, Gaussian, and Pareto, with real-world applications and visualizations.",
+    subDescription: [
+      "Understanding Probability Mass Function (PMF), Probability Density Function (PDF), and Cumulative Density Function (CDF).",
+      "Detailed analysis of Discrete Distributions: Bernoulli, Binomial, Poisson, and Uniform.",
+      "Deep dive into Continuous Distributions: Normal, Standard Normal, Log-Normal, and Power Law.",
+      "Real-world use cases, statistical properties (Mean, Variance), and graphical representations for each distribution.",
+    ],
+    href: "#",
+    logo: "",
+    image: "/assets/projects/probability.png", // Assuming a placeholder or I should let the user know I added this
+    tags: [
+      { id: 1, name: "Statistics", path: "/assets/logos/python.png" }, // Reusing python logo as placeholder for stats
+      { id: 2, name: "Data Science", path: "/assets/logos/scikit.png" },
+      { id: 3, name: "Mathematics", path: "/assets/logos/python.png" },
+    ],
+  },
 ];
 
 export const mySocials = [
