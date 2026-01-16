@@ -274,11 +274,6 @@ export const myBlogs = [
 
 export const mySocials = [
   {
-    name: "WhatsApp",
-    href: "",
-    icon: "/assets/socials/whatsApp.svg",
-  },
-  {
     name: "Linkedin",
     href: "https://www.linkedin.com/in/udai-das-9277a223b/",
     icon: "/assets/socials/linkedIn.svg",

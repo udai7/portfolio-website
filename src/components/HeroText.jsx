@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import DownloadCVButton from "./DownloadCVButton";
 
 const HeroText = () => {
-  const words = ["Secure", "Modern", "Scalable"];
+  const words = ["Intelligent", "Autonomous", "Scalable"];
   const variants = {
     hidden: { opacity: 0, x: -50 },
     visible: { opacity: 1, x: 0 },
@@ -29,7 +29,7 @@ const HeroText = () => {
             animate="visible"
             transition={{ delay: 1.2 }}
           >
-            A Developer <br /> Dedicated to Crafting
+            Focusing on <br /> Developing
           </motion.p>
           <motion.div
             variants={variants}
@@ -49,7 +49,7 @@ const HeroText = () => {
             animate="visible"
             transition={{ delay: 1.8 }}
           >
-            Web Solutions
+            AI Systems
           </motion.p>
           <motion.div
             className="mt-8"
@@ -63,48 +63,49 @@ const HeroText = () => {
         </div>
       </div>
       {/* Mobile View */}
-      <div className="flex- flex-col space-y-6 md:hidden">
+      <div className="flex flex-col space-y-4 md:hidden">
         <motion.p
-          className="text-4xl font-medium"
+          className="text-2xl font-medium"
           variants={variants}
           initial="hidden"
           animate="visible"
           transition={{ delay: 1 }}
         >
-          Hi,I'm Udai
+          Hi, I'm Udai
         </motion.p>
         <div>
           <motion.p
-            className="text-5xl font-black text-neutral-300"
+            className="text-3xl font-black text-neutral-300"
             variants={variants}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.2 }}
           >
-            Building
+            Developing
           </motion.p>
           <motion.div
             variants={variants}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.5 }}
+            className="my-2"
           >
             <FlipWords
               words={words}
-              className="font-bold text-white text-7xl"
+              className="font-bold text-white text-5xl"
             />
           </motion.div>
           <motion.p
-            className="text-4xl font-black text-neutral300"
+            className="text-3xl font-black text-neutral-300"
             variants={variants}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.8 }}
           >
-            Web Applications
+            AI Models
           </motion.p>
           <motion.div
-            className="mt-6"
+            className="mt-6 flex justify-center"
             variants={variants}
             initial="hidden"
             animate="visible"

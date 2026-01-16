@@ -20,7 +20,7 @@ const About = () => {
             <p className="headtext">Hi, I'm Udai Das</p>
             <p className="subtext">
               Over the last 3 years, I developed my frontend and backend dev
-              skills to deliver dynamic and software and web applications.
+              skills to deliver dynamic and software and web applications as freelancer now im focusing primarily on Machine Learning and AI.
             </p>
           </div>
           <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
@@ -61,17 +61,17 @@ const About = () => {
             />
             <Card
               style={{ rotate: "30deg", top: "70%", left: "70%" }}
-              image="assets/logos/react.svg"
+              image="assets/logos/kubernetes.png"
               containerRef={grid2Container}
             />
             <Card
               style={{ rotate: "-45deg", top: "70%", left: "25%" }}
-              image="assets/logos/nodejs.svg"
+              image="assets/logos/TensorFlow.png"
               containerRef={grid2Container}
             />
             <Card
               style={{ rotate: "-45deg", top: "5%", left: "10%" }}
-              image="assets/logos/javascript.svg"
+              image="assets/logos/python.png"
               containerRef={grid2Container}
             />
           </div>
