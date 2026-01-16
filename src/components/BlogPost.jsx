@@ -1311,11 +1311,16 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                   <h4 className="font-semibold text-white text-lg">
                     Real Life Example
                   </h4>
-                  <p className="text-neutral-300 mt-4 text-sm leading-relaxed">
-                    <strong>Waiting for a Bus:</strong> If a bus arrives exactly
-                    every 20 minutes, and you arrive randomly, your wait time is
-                    uniformly distributed between 0 and 20 minutes.
-                  </p>
+                  <div className="mt-3 text-sm">
+                    <p className="font-medium text-blue-300">
+                      1. Waiting for a Bus
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      If a bus arrives exactly every 20 minutes, and you arrive
+                      randomly, your wait time is uniformly distributed between
+                      0 and 20 minutes.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1429,11 +1434,15 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                   <h4 className="font-semibold text-white text-lg">
                     Real Life Example
                   </h4>
-                  <p className="text-neutral-300 mt-4 text-sm leading-relaxed">
-                    <strong>Rolling a Die:</strong> When rolling a fair 6-sided
-                    die, each number (1, 2, 3, 4, 5, 6) has an identical
-                    probability of exactly 1/6.
-                  </p>
+                  <div className="mt-3 text-sm">
+                    <p className="font-medium text-green-300">
+                      1. Rolling a Die
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      When rolling a fair 6-sided die, each number (1, 2, 3, 4,
+                      5, 6) has an identical probability of exactly 1/6.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1550,16 +1559,22 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                 <h4 className="font-semibold text-white text-lg">
                   Real Life Example
                 </h4>
-                <div className="space-y-4 mt-3 text-sm text-neutral-300">
-                  <p>
-                    <strong>1. Finance:</strong> Stock prices are modeled using
-                    log-normal distributions because they cannot go below zero
-                    and often exhibit rapid growth.
-                  </p>
-                  <p>
-                    <strong>2. Biology:</strong> The size of an organism or
-                    cellular growth over time.
-                  </p>
+                <div className="space-y-4 mt-3 text-sm">
+                  <div>
+                    <p className="font-medium text-pink-300">1. Finance</p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      Stock prices are modeled using log-normal distributions
+                      because they cannot go below zero and often exhibit rapid
+                      growth.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-medium text-pink-300">2. Biology</p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      The size of an organism or cellular growth over time often
+                      follows a log-normal distribution.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1767,19 +1782,21 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                 <h4 className="font-semibold text-white text-lg">
                   Real Life Examples
                 </h4>
-                <div className="space-y-4 mt-3 text-sm text-neutral-300">
-                  <div className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
-                    <p>
-                      <strong>Wealth Distribution:</strong> A small percentage
-                      of the population holds the vast majority of wealth.
+                <div className="space-y-4 mt-3 text-sm">
+                  <div>
+                    <p className="font-medium text-blue-300">
+                      1. Wealth Distribution
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      A small percentage of the population holds the vast
+                      majority of wealth, following a power-law pattern.
                     </p>
                   </div>
-                  <div className="flex gap-3">
-                    <span className="text-blue-400 font-bold">•</span>
-                    <p>
-                      <strong>Social Media:</strong> A tiny fraction of users
-                      (influencers) garner 95% of the platform's engagement.
+                  <div>
+                    <p className="font-medium text-blue-300">2. Social Media</p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      A tiny fraction of users (influencers) garner the vast
+                      majority of the platform's engagement and reach.
                     </p>
                   </div>
                 </div>
@@ -2033,17 +2050,27 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                   <h4 className="font-semibold text-white text-lg">
                     Real Life Examples
                   </h4>
-                  <div className="space-y-4 mt-3 text-sm text-neutral-300">
-                    <p>
-                      <strong>1. Economics:</strong> The original use
-                      case—Vilfredo Pareto observed that 80% of the land in
-                      Italy was owned by 20% of the population.
-                    </p>
-                    <p>
-                      <strong>2. Software:</strong> In many software systems,
-                      80% of runtime is spent executing only 20% of the code
-                      (important for optimization).
-                    </p>
+                  <div className="space-y-4 mt-3 text-sm">
+                    <div>
+                      <p className="font-medium text-emerald-300">
+                        1. Economics
+                      </p>
+                      <p className="text-neutral-300 mt-1 leading-relaxed">
+                        Vilfredo Pareto observed that 80% of the land in Italy
+                        was owned by 20% of the population, leading to the 80/20
+                        rule.
+                      </p>
+                    </div>
+                    <div>
+                      <p className="font-medium text-emerald-300">
+                        2. Software Engineering
+                      </p>
+                      <p className="text-neutral-300 mt-1 leading-relaxed">
+                        In many software systems, 80% of execution time is spent
+                        in only 20% of the code, highlighting critical
+                        optimization paths.
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -2190,12 +2217,17 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                   <h4 className="font-semibold text-white text-lg">
                     Real Life Example
                   </h4>
-                  <p className="text-neutral-300 mt-3 text-sm leading-relaxed">
-                    <strong>Quality Control:</strong> If a factory produces
-                    millions of lightbulbs with highly variable lifespans, we
-                    can still predict the *average* lifespan of a batch of 100
-                    bulbs with incredible precision using CLT.
-                  </p>
+                  <div className="mt-3 text-sm">
+                    <p className="font-medium text-blue-300">
+                      1. Quality Control
+                    </p>
+                    <p className="text-neutral-300 mt-1 leading-relaxed">
+                      If a factory produces millions of lightbulbs with highly
+                      variable lifespans, we can still predict the *average*
+                      lifespan of a batch of 100 bulbs with incredible precision
+                      using CLT.
+                    </p>
+                  </div>
                 </div>
               </div>
             </section>
