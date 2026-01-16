@@ -488,15 +488,15 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                 {/* Legend Overlay */}
                 <div className="flex flex-wrap justify-center gap-6 mb-6 text-xs md:text-sm">
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-cyan-400"></div>
+                    <div className="w-4 h-0.5 bg-cyan-400"></div>
                     <span className="text-neutral-300">λ = 1</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-emerald-400"></div>
+                    <div className="w-4 h-0.5 bg-emerald-400"></div>
                     <span className="text-neutral-300">λ = 4</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 rounded-full bg-amber-400"></div>
+                    <div className="w-4 h-0.5 bg-amber-400"></div>
                     <span className="text-neutral-300">λ = 10</span>
                   </div>
                 </div>
@@ -534,66 +534,33 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
 
                       {/* λ = 1 (Cyan) */}
                       <path
-                        d="M 0 100 L 0 7.5 L 5 7.5 L 10 52.5 L 15 85 L 20 95 L 25 100"
+                        d="M 0 100 Q 2 0, 25 100"
                         fill="none"
                         stroke="#22d3ee"
                         strokeWidth="1.5"
                         vectorEffect="non-scaling-stroke"
-                        strokeOpacity="0.8"
+                        className="opacity-90"
                       />
-                      {[0.37, 0.37, 0.19, 0.06, 0.015].map((val, i) => (
-                        <circle
-                          key={`l1-${i}`}
-                          cx={((i * 5) / 20) * 100}
-                          cy={100 - (val / 0.4) * 100}
-                          r="1"
-                          fill="#22d3ee"
-                        />
-                      ))}
 
                       {/* λ = 4 (Emerald) */}
                       <path
-                        d="M 0 95 L 5 82 L 10 65 L 15 52 L 20 52 L 25 61 L 30 74 L 35 85 L 40 92 L 45 97"
+                        d="M 0 95 C 10 90, 15 40, 25 55 S 40 90, 50 100"
                         fill="none"
                         stroke="#34d399"
                         strokeWidth="1.5"
                         vectorEffect="non-scaling-stroke"
-                        strokeOpacity="0.8"
+                        className="opacity-90"
                       />
-                      {[
-                        0.018, 0.073, 0.146, 0.195, 0.195, 0.156, 0.104, 0.059,
-                        0.03, 0.013,
-                      ].map((val, i) => (
-                        <circle
-                          key={`l4-${i}`}
-                          cx={((i * 5) / 20) * 100}
-                          cy={100 - (val / 0.4) * 100}
-                          r="1"
-                          fill="#34d399"
-                        />
-                      ))}
 
                       {/* λ = 10 (Amber) */}
                       <path
-                        d="M 0 100 L 25 98 L 30 95 L 35 88 L 40 79 L 45 71 L 50 68 L 55 71 L 60 78 L 70 90 L 80 95 L 100 100"
+                        d="M 0 100 C 30 100, 45 60, 55 70 S 80 95, 100 100"
                         fill="none"
                         stroke="#fbbf24"
                         strokeWidth="1.5"
                         vectorEffect="non-scaling-stroke"
-                        strokeOpacity="0.8"
+                        className="opacity-90"
                       />
-                      {[
-                        0.005, 0.01, 0.018, 0.035, 0.06, 0.09, 0.11, 0.125,
-                        0.125, 0.11, 0.09, 0.07, 0.05, 0.035, 0.02, 0.01,
-                      ].map((val, i) => (
-                        <circle
-                          key={`l10-${i}`}
-                          cx={(((i + 2) * 5) / 20) * 100}
-                          cy={100 - (val / 0.4) * 100}
-                          r="1"
-                          fill="#fbbf24"
-                        />
-                      ))}
                     </svg>
 
                     {/* X-Axis Labels */}
