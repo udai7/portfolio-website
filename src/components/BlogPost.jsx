@@ -1179,8 +1179,8 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
                   Standardization shifts the distribution so the{" "}
                   <strong>Mean (μ) becomes 0</strong> and rescales it so the{" "}
                   <strong>Standard Deviation (σ) becomes 1</strong>. This
-                  transforms any value \( x \) into a \( z \)-score,
-                  representing how many standard deviations it is from the mean.
+                  transforms any value (x) into a (z)-score, representing how
+                  many standard deviations it is from the mean.
                 </p>
               </div>
             </div>
@@ -1232,16 +1232,18 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
       case "uniform":
         return (
           <div className="space-y-12">
-            <h3 className="text-2xl font-bold text-white mb-4 italic border-b border-white/10 pb-2">
+            <h3 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-2">
               Uniform Distribution
             </h3>
 
             {/* Continuous Section */}
             <div className="space-y-6">
-              <span className="bg-blue-600/30 text-blue-300 px-3 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
-                Continuous Uniform
-              </span>
-              <p className="text-lg text-neutral-200 leading-relaxed">
+              <div className="mb-4">
+                <span className="bg-blue-600/30 text-blue-300 px-3 py-1.5 rounded-full text-sm font-semibold tracking-wider uppercase">
+                  Continuous Uniform
+                </span>
+              </div>
+              <p className="text-lg text-neutral-200 leading-relaxed mt-4">
                 The Continuous Uniform Distribution describes an experiment
                 where there is an <strong>arbitrary outcome</strong> within a
                 specific range $[a, b]$, and every single value in that range
@@ -1360,10 +1362,12 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
 
             {/* Discrete Section */}
             <div className="space-y-6 pt-10 border-t border-white/10">
-              <span className="bg-green-600/30 text-green-300 px-3 py-1 rounded-full text-sm font-semibold tracking-wider uppercase">
-                Discrete Uniform
-              </span>
-              <p className="text-lg text-neutral-200 leading-relaxed">
+              <div className="mb-4">
+                <span className="bg-green-600/30 text-green-300 px-3 py-1.5 rounded-full text-sm font-semibold tracking-wider uppercase">
+                  Discrete Uniform
+                </span>
+              </div>
+              <p className="text-lg text-neutral-200 leading-relaxed mt-4">
                 The Discrete Uniform Distribution occurs when there are a{" "}
                 <strong>finite number of outcomes</strong>, all of which are
                 equally likely to occur (e.g., rolling a fair die).
@@ -1477,94 +1481,764 @@ const BlogPost = ({ blog, onClose, isPage = false }) => {
         );
       case "log_normal":
         return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-2">
               Log-Normal Distribution
             </h3>
-            <span className="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-sm">
-              Continuous
-            </span>
+            <div className="flex items-center gap-3">
+              <span className="bg-pink-600/30 text-pink-300 px-3 py-1 rounded-full text-sm">
+                Continuous
+              </span>
+              <span className="text-neutral-500 text-sm italic">
+                Skewed Right
+              </span>
+            </div>
+
             <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
-              A random variable X is log-normally distributed if ln(X) follows a
-              normal distribution. The distribution is skewed to the right.
+              A random variable $X$ is log-normally distributed if the{" "}
+              <strong>natural logarithm of $X$</strong> follows a normal
+              distribution. Unlike the Normal distribution, it is{" "}
+              <strong>skewed to the right</strong> and only contains positive
+              values, making it perfect for modeling physical and financial
+              growth.
             </p>
 
-            <div className="bg-white/5 p-4 rounded border border-white/10">
-              <h4 className="font-semibold text-white text-lg">
-                Real Life Example
+            {/* PDF Comparison Graph */}
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-6 text-center text-sm">
+                Log-Normal PDF Comparison (μ=0)
               </h4>
-              <p className="text-neutral-300 text-sm mt-3 leading-relaxed">
-                Income distribution, Stock prices (cannot be negative), Length
-                of comments on online forums.
+              <div className="flex flex-col items-center">
+                <div className="flex flex-wrap justify-center gap-4 mb-4 text-[10px]">
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-0.5 bg-red-500 text-red-500"></div>
+                    <span className="text-neutral-400">σ = 0.25</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-0.5 bg-green-500 text-green-500"></div>
+                    <span className="text-neutral-400">σ = 0.5</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-3 h-0.5 bg-blue-500 text-blue-500"></div>
+                    <span className="text-neutral-400">σ = 1.0</span>
+                  </div>
+                </div>
+
+                <div className="relative h-48 w-full max-w-md px-10 pb-6">
+                  {/* Grid / Axis */}
+                  <div className="absolute inset-0 border-l border-b border-white/10 ml-10 mb-6"></div>
+                  <svg
+                    className="w-full h-full overflow-visible"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    {/* Curve 1: σ=1 (Blue - Flat/Long tail) */}
+                    <path
+                      d="M 0 90 C 5 80, 10 40, 20 60 S 60 85, 95 90"
+                      fill="none"
+                      stroke="#3b82f6"
+                      strokeWidth="1.5"
+                    />
+                    {/* Curve 2: σ=0.5 (Green - Higher peak) */}
+                    <path
+                      d="M 0 90 C 10 90, 20 10, 35 30 S 60 85, 95 90"
+                      fill="none"
+                      stroke="#22c55e"
+                      strokeWidth="1.5"
+                    />
+                    {/* Curve 3: σ=0.25 (Red - Sharpest peak) */}
+                    <path
+                      d="M 15 90 C 25 90, 30 5, 40 40 S 55 90, 80 90"
+                      fill="none"
+                      stroke="#ef4444"
+                      strokeWidth="1.5"
+                    />
+                  </svg>
+                  <div className="absolute bottom-0 left-10 w-full flex justify-between text-[8px] text-neutral-500 px-2 mt-2">
+                    <span>0.0</span>
+                    <span>0.5</span>
+                    <span>1.0</span>
+                    <span>1.5</span>
+                    <span>2.0</span>
+                    <span>2.5</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Key Statistics
+                </h4>
+                <ul className="text-neutral-300 space-y-3 mt-3 text-sm">
+                  <li>
+                    <strong>Mean:</strong> exp(μ + σ²/2)
+                  </li>
+                  <li>
+                    <strong>Median:</strong> exp(μ)
+                  </li>
+                  <li>
+                    <strong>Mode:</strong> exp(μ - σ²)
+                  </li>
+                  <li>
+                    <strong>Bound:</strong> Always positive (X &gt; 0).
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Example
+                </h4>
+                <div className="space-y-4 mt-3 text-sm text-neutral-300">
+                  <p>
+                    <strong>1. Finance:</strong> Stock prices are modeled using
+                    log-normal distributions because they cannot go below zero
+                    and often exhibit rapid growth.
+                  </p>
+                  <p>
+                    <strong>2. Biology:</strong> The size of an organism or
+                    cellular growth over time.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Conversion Section */}
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-8">
+              <h4 className="text-white font-semibold mb-8 text-center text-lg">
+                Conversion: Log-Normal to Normal
+              </h4>
+              <div className="flex flex-col md:flex-row items-center justify-around gap-10">
+                {/* Log-Normal (Skewed) */}
+                <div className="flex-1 text-center">
+                  <p className="text-xs text-neutral-500 mb-4 font-bold tracking-widest uppercase">
+                    Log-Normal ($X$)
+                  </p>
+                  <div className="relative h-32 w-full">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 5 95 C 10 95, 20 10, 35 40 S 90 95, 95 95"
+                        fill="none"
+                        stroke="#ec4899"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="0"
+                        y1="95"
+                        x2="100"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="0.5"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-[10px] text-pink-400 mt-2 italic font-medium underline underline-offset-4 decoration-pink-500/30">
+                    Heavily skewed right
+                  </p>
+                </div>
+
+                {/* Arrow with math */}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="bg-neutral-800 px-4 py-2 rounded border border-neutral-700">
+                    <p className="text-white font-mono text-sm tracking-tighter">
+                      Y = ln(X)
+                    </p>
+                  </div>
+                  <div className="text-neutral-600">
+                    <svg
+                      className="w-6 h-6 rotate-90 md:rotate-0"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M13 5l7 7m0 0l-7 7m7-7H3"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Normal (Symmetric) */}
+                <div className="flex-1 text-center">
+                  <p className="text-xs text-neutral-500 mb-4 font-bold tracking-widest uppercase">
+                    Normal ($Y$)
+                  </p>
+                  <div className="relative h-32 w-full">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 5 95 C 25 95, 40 10, 50 10 S 75 95, 95 95"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="2"
+                      />
+                      <line
+                        x1="0"
+                        y1="95"
+                        x2="100"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="0.5"
+                      />
+                    </svg>
+                  </div>
+                  <p className="text-[10px] text-blue-400 mt-2 italic font-medium underline underline-offset-4 decoration-blue-500/30">
+                    Symmetric bell curve
+                  </p>
+                </div>
+              </div>
+              <p className="text-sm text-neutral-400 mt-10 text-center leading-relaxed max-w-lg mx-auto border-t border-white/5 pt-6">
+                By taking the <strong>Natural Log (ln)</strong> of log-normally
+                distributed data, the skewness is "neutralized" and the data
+                transforms into a standard Normal Distribution.
               </p>
             </div>
           </div>
         );
       case "power_law":
         return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
+          <div className="space-y-8">
+            <h3 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-2">
               Power Law Distribution
             </h3>
+
             <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
-              Also known as the 80/20 rule (Pareto principle). A functional
-              relationship between two quantities, where a relative change in
-              one results in a proportional relative change in the other.
-            </p>
-            <p className="text-lg text-neutral-300 italic">
-              "The rich get richer."
+              A Power Law distribution is a relationship between two quantities
+              where a relative change in one results in a proportional relative
+              change in the other, regardless of the initial size. It is famous
+              for its <strong>"Long Tail,"</strong> where a tiny number of
+              events account for a huge percentage of the total impact.
             </p>
 
-            <div className="bg-black/30 p-4 rounded text-sm font-mono text-green-400">
-              P(x) ~ x^(-α)
+            {/* Power Law Curve Graph */}
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+              <h4 className="text-white font-semibold mb-6 text-center text-sm italic underline underline-offset-4 decoration-white/20">
+                Frequency vs Impact (Power-Law Curve)
+              </h4>
+              <div className="relative h-64 w-full px-12 pb-8">
+                {/* Y-Axis Label */}
+                <div className="absolute left-0 top-0 h-full flex items-center">
+                  <span className="text-[10px] text-neutral-500 -rotate-90 origin-center whitespace-nowrap -ml-4">
+                    Number of Occurrences
+                  </span>
+                </div>
+
+                <div className="relative w-full h-full border-b border-l border-white/20">
+                  <svg
+                    className="w-full h-full"
+                    viewBox="0 0 100 100"
+                    preserveAspectRatio="none"
+                  >
+                    {/* Histogram Bars (blue) */}
+                    {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].map(
+                      (i) => {
+                        const height = 90 / Math.pow(i, 0.82);
+                        return (
+                          <rect
+                            key={i}
+                            x={i * 6}
+                            y={90 - height}
+                            width="4"
+                            height={height}
+                            fill="rgba(59, 130, 246, 0.4)"
+                            stroke="rgba(59, 130, 246, 0.6)"
+                            strokeWidth="0.5"
+                          />
+                        );
+                      }
+                    )}
+                    {/* Power Law Line (black/dark) */}
+                    <path
+                      d="M 6 10 C 10 40, 30 80, 95 90"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth="2"
+                      className="opacity-80"
+                    />
+                  </svg>
+                  {/* Legend Overlay */}
+                  <div className="absolute top-2 right-2 bg-black/40 border border-white/10 p-2 text-[10px] rounded backdrop-blur-sm">
+                    <div className="flex items-center gap-2 mb-1">
+                      <div className="w-3 h-3 bg-blue-500/40 border border-blue-400/60"></div>
+                      <span className="text-neutral-300">number</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-0.5 bg-white"></div>
+                      <span className="text-neutral-300 italic">
+                        power-law distribution curve
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center text-[10px] text-neutral-500 mt-2">
+                  Quality / Magnitude
+                </div>
+              </div>
             </div>
 
-            <div className="bg-white/5 p-4 rounded border border-white/10 mt-4">
-              <h4 className="font-semibold text-white text-lg">
-                Real Life Example
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  The 80/20 Rule
+                </h4>
+                <div className="bg-pink-600/10 p-3 rounded mt-3 border-l-4 border-pink-500">
+                  <p className="text-pink-300 text-sm italic font-medium">
+                    "80% of consequences come from 20% of causes."
+                  </p>
+                </div>
+                <p className="text-neutral-300 mt-4 text-sm leading-relaxed">
+                  In a power law environment, the majority of the distribution
+                  is in the "tail." For example, in business, 80% of sales often
+                  come from 20% of the clients.
+                </p>
+              </div>
+              <div className="bg-white/5 p-4 rounded border border-white/10">
+                <h4 className="font-semibold text-white text-lg">
+                  Real Life Examples
+                </h4>
+                <div className="space-y-4 mt-3 text-sm text-neutral-300">
+                  <div className="flex gap-3">
+                    <span className="text-blue-400 font-bold">•</span>
+                    <p>
+                      <strong>Wealth Distribution:</strong> A small percentage
+                      of the population holds the vast majority of wealth.
+                    </p>
+                  </div>
+                  <div className="flex gap-3">
+                    <span className="text-blue-400 font-bold">•</span>
+                    <p>
+                      <strong>Social Media:</strong> A tiny fraction of users
+                      (influencers) garner 95% of the platform's engagement.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Box-Cox Transformation Section */}
+            <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-8">
+              <h4 className="text-white font-semibold mb-8 text-center text-lg">
+                Transformation: Power-Law to Normal (Box-Cox)
               </h4>
-              <p className="text-neutral-300 text-sm mt-3 leading-relaxed">
-                Followers on social media, City populations, Word frequency
-                (Zipf's law).
-              </p>
+              <div className="flex flex-col md:flex-row items-center justify-around gap-10">
+                {/* Power Law (Curve) */}
+                <div className="flex-1 text-center">
+                  <p className="text-xs text-neutral-500 mb-4 font-bold tracking-widest uppercase">
+                    Power-Law Curve
+                  </p>
+                  <div className="relative h-32 w-full p-2">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 5 10 C 10 60, 40 90, 95 95"
+                        fill="none"
+                        stroke="#ef4444"
+                        strokeWidth="2.5"
+                      />
+                      <line
+                        x1="0"
+                        y1="95"
+                        x2="100"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="1"
+                      />
+                    </svg>
+                  </div>
+                </div>
+
+                {/* Arrow with Algorithm Name */}
+                <div className="flex flex-col items-center gap-2">
+                  <div className="bg-neutral-800 px-4 py-2 rounded-lg border border-neutral-700 text-[11px] font-bold text-pink-400 shadow-lg">
+                    Box-Cox Algorithm
+                  </div>
+                  <svg
+                    className="w-6 h-6 text-neutral-500"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M14 5l7 7m0 0l-7 7m7-7H3"
+                    />
+                  </svg>
+                </div>
+
+                {/* Normal (Bell Curve) */}
+                <div className="flex-1 text-center">
+                  <p className="text-xs text-neutral-500 mb-4 font-bold tracking-widest uppercase">
+                    Bell Curve (Normal)
+                  </p>
+                  <div className="relative h-32 w-full p-2">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      <path
+                        d="M 5 95 Q 50 10 95 95"
+                        fill="none"
+                        stroke="#22c55e"
+                        strokeWidth="2.5"
+                      />
+                      <line
+                        x1="0"
+                        y1="95"
+                        x2="100"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="1"
+                      />
+                      <line
+                        x1="0"
+                        y1="0"
+                        x2="0"
+                        y2="95"
+                        stroke="white"
+                        strokeWidth="1"
+                      />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              <div className="mt-8 bg-black/20 p-4 rounded-lg text-sm text-neutral-300 border-l-2 border-blue-500">
+                <p>
+                  The <strong>Box-Cox Transformation</strong> is a statistical
+                  technique used to transform non-normal data into a normal
+                  shape (Y = (X^λ - 1) / λ). It is essential for using power-law
+                  data in predictive models that assume a Gaussian (Bell Curve)
+                  distribution.
+                </p>
+              </div>
             </div>
           </div>
         );
       case "pareto":
         return (
-          <div className="space-y-6">
-            <h3 className="text-2xl font-bold text-white mb-4">
-              Pareto & Central Limit Theorem
-            </h3>
-
-            <div className="mb-8">
-              <h4 className="text-xl font-semibold text-white mb-2">
+          <div className="space-y-12">
+            {/* Pareto Section */}
+            <section>
+              <h3 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-2">
                 Pareto Distribution
-              </h4>
-              <p className="text-lg text-neutral-200 leading-relaxed">
-                A specific power-law probability distribution used in
-                description of social, quality control, scientific, geophysical,
-                actuarial, and many other types of observable phenomena.
+              </h3>
+              <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+                The Pareto Distribution is a power-law probability distribution
+                commonly used to describe social, scientific, and geophysical
+                phenomena. It is most famous for the <strong>80/20 Rule</strong>
+                , which suggests that roughly 80% of effects come from 20% of
+                causes. In this distribution, the probability of a large event
+                occurring is small, but not impossible (the "long tail").
               </p>
-              <p className="text-neutral-300 mt-3">
-                <strong>Mean:</strong> (α * xm) / (α - 1) for α &gt; 1.
-              </p>
-            </div>
 
-            <div className="border-t border-white/10 pt-6">
-              <h4 className="text-xl font-semibold text-white mb-2">
+              {/* Pareto Graph */}
+              <div className="bg-white/5 p-6 rounded-xl border border-white/10 my-6">
+                <h4 className="text-white font-semibold mb-6 text-center text-sm italic underline underline-offset-4 decoration-white/20">
+                  Pareto PDF: Varying Alpha (α) with Scale x_m = 1
+                </h4>
+                <div className="relative h-64 w-full px-12 pb-8">
+                  <div className="absolute left-0 top-0 h-full flex flex-col justify-between text-[10px] text-neutral-500 py-1 items-end pr-2 w-10">
+                    <span>3.0</span>
+                    <span>2.5</span>
+                    <span>2.0</span>
+                    <span>1.5</span>
+                    <span>1.0</span>
+                    <span>0.5</span>
+                    <span>0.0</span>
+                  </div>
+
+                  <div className="relative w-full h-full border-b border-l border-white/20">
+                    <svg
+                      className="w-full h-full"
+                      viewBox="0 0 100 100"
+                      preserveAspectRatio="none"
+                    >
+                      {/* Alpha = Infinity (Black line) */}
+                      <line
+                        x1="10"
+                        y1="100"
+                        x2="10"
+                        y2="0"
+                        stroke="white"
+                        strokeWidth="1.5"
+                        className="opacity-50"
+                      />
+
+                      {/* Alpha = 1 (Green) - Starts at y=1.0 (66.6% down) */}
+                      <path
+                        d="M 10 66.6 Q 30 90, 95 98"
+                        fill="none"
+                        stroke="#22c55e"
+                        strokeWidth="2"
+                      />
+                      <circle cx="10" cy="66.6" r="1.5" fill="#22c55e" />
+
+                      {/* Alpha = 2 (Blue) - Starts at y=2.0 (33.3% down) */}
+                      <path
+                        d="M 10 33.3 Q 20 85, 95 98"
+                        fill="none"
+                        stroke="#3b82f6"
+                        strokeWidth="2"
+                      />
+                      <circle cx="10" cy="33.3" r="1.5" fill="#3b82f6" />
+
+                      {/* Alpha = 3 (Red) - Starts at y=3.0 (top) */}
+                      <path
+                        d="M 10 0 Q 15 80, 95 98"
+                        fill="none"
+                        stroke="#ef4444"
+                        strokeWidth="2"
+                      />
+                      <circle cx="10" cy="0" r="1.5" fill="#ef4444" />
+                    </svg>
+
+                    {/* Legend Table */}
+                    <div className="absolute top-2 right-2 bg-black/60 p-2 rounded border border-white/10 text-[10px] space-y-1 backdrop-blur-sm">
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-0.5 bg-white opacity-50"></div>
+                        <span className="text-neutral-300">α = ∞</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-red-500"></div>
+                        <span className="text-neutral-300">α = 3</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+                        <span className="text-neutral-300">α = 2</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <div className="w-2 h-2 rounded-full bg-green-500"></div>
+                        <span className="text-neutral-300">α = 1</span>
+                      </div>
+                    </div>
+                  </div>
+                  {/* X-axis ticks */}
+                  <div className="flex justify-between text-[10px] text-neutral-500 mt-2 ml-10">
+                    <span>1 (xm)</span>
+                    <span>2</span>
+                    <span>3</span>
+                    <span>4</span>
+                    <span>5</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Key Statistics
+                  </h4>
+                  <ul className="text-neutral-300 space-y-3 mt-3 text-sm">
+                    <li>
+                      <strong>Mean:</strong> (α · xm) / (α - 1) — for α &gt; 1
+                    </li>
+                    <li>
+                      <strong>Variance:</strong> [α · xm²] / [(α-1)²(α-2)] — for
+                      α &gt; 2
+                    </li>
+                    <li>
+                      <strong>Median:</strong> xm · 2^(1/α)
+                    </li>
+                    <li>
+                      <strong>Threshold:</strong> Probability is zero for x &lt;
+                      x_m.
+                    </li>
+                  </ul>
+                </div>
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Real Life Examples
+                  </h4>
+                  <div className="space-y-4 mt-3 text-sm text-neutral-300">
+                    <p>
+                      <strong>1. Economics:</strong> The original use
+                      case—Vilfredo Pareto observed that 80% of the land in
+                      Italy was owned by 20% of the population.
+                    </p>
+                    <p>
+                      <strong>2. Software:</strong> In many software systems,
+                      80% of runtime is spent executing only 20% of the code
+                      (important for optimization).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            {/* Central Limit Theorem Section */}
+            <section className="border-t border-white/10 pt-8">
+              <h3 className="text-2xl font-bold text-white mb-4 border-b border-white/10 pb-2">
                 Central Limit Theorem (CLT)
-              </h4>
-              <p className="text-lg text-neutral-200 mb-4 leading-relaxed">
-                As sample size (n) increases, the distribution of sample means
-                approaches a Normal Distribution, regardless of the population's
-                distribution.
+              </h3>
+              <p className="text-lg text-neutral-200 mt-4 leading-relaxed">
+                The CLT is the most powerful "bridge" in statistics. It allows
+                researchers to use the tools of the Normal Distribution to
+                analyze <strong>any</strong> data, even if the underlying
+                population is skewed, uniform, or completely irregular.
               </p>
-              <ul className="list-disc list-inside text-neutral-300 space-y-2">
-                <li>Ideally n ≥ 30</li>
-                <li>Foundational to hypothesis testing.</li>
-              </ul>
-            </div>
+
+              {/* CLT Transformation Graphic */}
+              <div className="bg-white/5 p-8 rounded-xl border border-white/10 my-8">
+                <h4 className="text-white font-semibold mb-10 text-center text-lg">
+                  Visualizing the Sampling Distribution
+                </h4>
+                <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
+                  {/* Step 1: Population */}
+                  <div className="flex-1 text-center w-full">
+                    <p className="text-[10px] text-neutral-500 mb-4 font-black uppercase tracking-widest text-center">
+                      Population Distribution
+                    </p>
+                    <div className="relative h-40 w-full bg-neutral-900/50 rounded-lg p-3 border border-white/5 shadow-inner">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                      >
+                        {/* A "Double Humped" / Irregular Population */}
+                        <path
+                          d="M 5 95 C 10 95, 20 10, 35 40 C 45 60, 55 10, 80 40 C 90 60, 95 95, 95 95"
+                          fill="#475569"
+                          fillOpacity="0.2"
+                          stroke="#94a3b8"
+                          strokeWidth="2"
+                        />
+                        <line
+                          x1="45"
+                          y1="10"
+                          x2="45"
+                          y2="95"
+                          stroke="white"
+                          strokeWidth="1"
+                          strokeDasharray="2"
+                          className="opacity-20"
+                        />
+                      </svg>
+                      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[8px] uppercase font-bold text-white/20">
+                        Irregular Base
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Sampling Logic */}
+                  <div className="flex lg:flex-col items-center gap-4 text-neutral-500">
+                    <div className="hidden lg:block text-[10px] font-bold">
+                      Samples of size n
+                    </div>
+                    <div className="flex flex-col items-center">
+                      <div className="w-1 h-1 bg-blue-500 rounded-full animate-ping"></div>
+                      <svg
+                        className="w-8 h-8 rotate-90 lg:rotate-0 text-blue-500"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M17 8l4 4m0 0l-4 4m4-4H3"
+                        />
+                      </svg>
+                    </div>
+                    <p className="text-[10px] italic font-bold">x̄₁, x̄₂... x̄ₙ</p>
+                  </div>
+
+                  {/* Step 2: Sampling Distribution */}
+                  <div className="flex-1 text-center w-full">
+                    <p className="text-[10px] text-neutral-500 mb-4 font-black uppercase tracking-widest text-center">
+                      Sampling Distribution (of Mean)
+                    </p>
+                    <div className="relative h-40 w-full bg-blue-900/10 rounded-lg p-3 border border-blue-500/20 shadow-inner">
+                      <svg
+                        className="w-full h-full"
+                        viewBox="0 0 100 100"
+                        preserveAspectRatio="none"
+                      >
+                        {/* Perfect Gaussian Curve */}
+                        <path
+                          d="M 10 95 C 30 95, 45 5, 50 5 S 70 95, 90 95"
+                          fill="rgba(59, 130, 246, 0.1)"
+                          stroke="#3b82f6"
+                          strokeWidth="3"
+                        />
+                        {/* Width marker for Standard Error */}
+                        <line
+                          x1="40"
+                          y1="50"
+                          x2="60"
+                          y2="50"
+                          stroke="#60a5fa"
+                          strokeWidth="1"
+                        />
+                        <text
+                          x="50"
+                          y="45"
+                          fill="#3b82f6"
+                          fontSize="6"
+                          textAnchor="middle"
+                        >
+                          σ / √n
+                        </text>
+                      </svg>
+                      <div className="absolute top-2 right-2 flex items-center gap-1">
+                        <span className="text-[8px] font-bold text-blue-400">
+                          GAUSSIAN
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    The Rule of 30
+                  </h4>
+                  <p className="text-neutral-300 mt-3 text-sm leading-relaxed">
+                    Statisticians generally agree that a sample size of{" "}
+                    <strong>n ≥ 30</strong> is sufficient to ensure the sampling
+                    distribution of the mean is approximately normal, even if
+                    the population distribution is heavily skewed.
+                  </p>
+                </div>
+                <div className="bg-white/5 p-4 rounded border border-white/10">
+                  <h4 className="font-semibold text-white text-lg">
+                    Real Life Example
+                  </h4>
+                  <p className="text-neutral-300 mt-3 text-sm leading-relaxed">
+                    <strong>Quality Control:</strong> If a factory produces
+                    millions of lightbulbs with highly variable lifespans, we
+                    can still predict the *average* lifespan of a batch of 100
+                    bulbs with incredible precision using CLT.
+                  </p>
+                </div>
+              </div>
+            </section>
           </div>
         );
       default:
