@@ -107,7 +107,7 @@ body {
 
 /* Navigation */
 .nav-ul {
-  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-6 relative z-20;
+  @apply flex flex-col items-center gap-4 sm:flex-row md:gap-10 relative z-20;
 }
 
 .nav-li {
@@ -115,7 +115,7 @@ body {
 }
 
 .nav-link {
-  @apply text-lg md:text-base hover:text-white transition-colors;
+  @apply text-lg md:text-lg font-medium hover:text-white transition-colors;
 }
 /* Button Components */
 .btn {

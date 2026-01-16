@@ -72,24 +72,45 @@ export function Globe({ className, config = GLOBE_CONFIG }) {
       }
     };
 
-    window.addEventListener("resize", onResize);
+    // Initial size check
     onResize();
 
-    const globe = createGlobe(canvasRef.current, {
-      ...config,
-      width: width * 2,
-      height: width * 2,
-      onRender: (state) => {
-        if (!pointerInteracting.current) phi += 0.005;
-        state.phi = phi + rs.get();
-        state.width = width * 2;
-        state.height = width * 2;
-      },
-    });
+    window.addEventListener("resize", onResize);
 
-    setTimeout(() => (canvasRef.current.style.opacity = "1"), 0);
+    let globe;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!globe) {
+            globe = createGlobe(canvasRef.current, {
+              ...config,
+              width: width * 2,
+              height: width * 2,
+              onRender: (state) => {
+                if (!pointerInteracting.current) phi += 0.005;
+                state.phi = phi + rs.get();
+              },
+            });
+            setTimeout(() => (canvasRef.current.style.opacity = "1"), 0);
+          }
+        } else {
+          if (globe) {
+            globe.destroy();
+            globe = null;
+          }
+        }
+      },
+      { threshold: 0 }
+    );
+
+    if (canvasRef.current) {
+      observer.observe(canvasRef.current);
+    }
+
     return () => {
-      globe.destroy();
+      if (globe) globe.destroy();
+      observer.disconnect();
       window.removeEventListener("resize", onResize);
     };
   }, [rs, config]);

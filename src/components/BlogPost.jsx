@@ -1,7 +1,7 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 
-const BlogPost = ({ blog, onClose }) => {
+const BlogPost = ({ blog, onClose, isPage = false }) => {
   const [activeSection, setActiveSection] = useState("overview");
 
   // Determine which project this is
@@ -938,6 +938,65 @@ const BlogPost = ({ blog, onClose }) => {
     }
   };
 
+  const content = (
+    <div className="flex flex-col md:flex-row h-full">
+      {/* Mobile Header */}
+      <div className="md:hidden bg-gradient-to-r from-midnight to-navy border-b border-white/10 p-4">
+        <h2 className="text-lg font-bold text-white mb-3 pr-8">{blog.title}</h2>
+        <div className="flex overflow-x-auto space-x-2 pb-2">
+          {Object.entries(sections).map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => setActiveSection(key)}
+              className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm transition-colors ${
+                activeSection === key
+                  ? "bg-white/10 text-white"
+                  : "text-neutral-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* Desktop Sidebar */}
+      <div className="hidden md:block w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4">
+        <h2 className="text-xl font-bold text-white mb-6 pr-8">{blog.title}</h2>
+        <nav className="space-y-2">
+          {Object.entries(sections).map(([key, label]) => (
+            <button
+              key={key}
+              onClick={() => setActiveSection(key)}
+              className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
+                activeSection === key
+                  ? "bg-white/10 text-white"
+                  : "text-neutral-400 hover:text-white hover:bg-white/5"
+              }`}
+            >
+              {label}
+            </button>
+          ))}
+        </nav>
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 overflow-y-auto custom-scrollbar">
+        <div className="p-4 md:p-6 h-full">
+          <div className="min-h-full">{renderContent()}</div>
+        </div>
+      </div>
+    </div>
+  );
+
+  if (isPage) {
+    return (
+      <div className="relative w-full h-[calc(100vh-64px)] mt-16 md:mt-20 border-t border-white/10 bg-gradient-to-l from-midnight to-navy">
+        {content}
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-blur-sm">
       <motion.div
@@ -952,58 +1011,7 @@ const BlogPost = ({ blog, onClose }) => {
           <img src="assets/close.svg" className="w-5 h-5 md:w-6 md:h-6" />
         </button>
 
-        <div className="flex flex-col md:flex-row h-full">
-          {/* Mobile Header */}
-          <div className="md:hidden bg-gradient-to-r from-midnight to-navy border-b border-white/10 p-4">
-            <h2 className="text-lg font-bold text-white mb-3 pr-8">
-              {blog.title}
-            </h2>
-            <div className="flex overflow-x-auto space-x-2 pb-2">
-              {Object.entries(sections).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setActiveSection(key)}
-                  className={`flex-shrink-0 px-3 py-2 rounded-lg text-sm transition-colors ${
-                    activeSection === key
-                      ? "bg-white/10 text-white"
-                      : "text-neutral-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Sidebar */}
-          <div className="hidden md:block w-64 bg-gradient-to-b from-midnight to-navy border-r border-white/10 p-4">
-            <h2 className="text-xl font-bold text-white mb-6 pr-8">
-              {blog.title}
-            </h2>
-            <nav className="space-y-2">
-              {Object.entries(sections).map(([key, label]) => (
-                <button
-                  key={key}
-                  onClick={() => setActiveSection(key)}
-                  className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${
-                    activeSection === key
-                      ? "bg-white/10 text-white"
-                      : "text-neutral-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  {label}
-                </button>
-              ))}
-            </nav>
-          </div>
-
-          {/* Content */}
-          <div className="flex-1 overflow-y-auto custom-scrollbar">
-            <div className="p-4 md:p-6 h-full">
-              <div className="min-h-full">{renderContent()}</div>
-            </div>
-          </div>
-        </div>
+        {content}
       </motion.div>
     </div>
   );

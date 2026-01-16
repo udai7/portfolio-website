@@ -34,12 +34,12 @@ function Navigation() {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="fixed top-0 inset-x-0 z-20 w-full backdrop-blur-lg bg-primary/40">
-      <div className="mx-auto c-space max-w-7xl">
-        <div className="flex items-center justify-between py-2 sm:py-0">
+    <div className="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-md bg-primary/70 border-b border-white/10">
+      <div className="mx-auto w-full px-6 md:px-12">
+        <div className="flex items-center justify-between py-4">
           <a
             href="/"
-            className="text-xl font-bold transition-colors text-neutral-400 hover:text-white"
+            className="text-2xl font-bold transition-colors text-neutral-200 hover:text-white"
           >
             Udai
           </a>
