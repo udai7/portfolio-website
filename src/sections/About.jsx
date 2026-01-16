@@ -20,7 +20,8 @@ const About = () => {
             <p className="headtext">Hi, I'm Udai Das</p>
             <p className="subtext">
               Over the last 3 years, I developed my frontend and backend dev
-              skills to deliver dynamic and software and web applications as freelancer now im focusing primarily on Machine Learning and AI.
+              skills to deliver dynamic and software and web applications as
+              freelancer now im focusing primarily on Machine Learning and AI.
             </p>
           </div>
           <div className="absolute inset-x-0 pointer-evets-none -bottom-4 h-1/2 sm:h-1/3 bg-gradient-to-t from-indigo" />
@@ -100,10 +101,10 @@ const About = () => {
         {/* Grid 5 */}
         <div className="grid-default-color grid-5">
           <div className="z-10 w-[50%]">
-            <p className="headText">Teck Stack</p>
+            <p className="headText">Tech Stack</p>
             <p className="subtext">
-              I specialize in a variety of languages, frameworks, and tools taht
-              allow me to build robust and scalable applications
+              While my roots are in MERN & Next.js, I now specialize in AI/ML
+              stacks—building RAG pipelines, Vector DBs, and MLOps workflows.
             </p>
           </div>
           <div className="absolute inset-y-0 md:inset-y-9 w-full h-full start-[50%] md:scale-125">

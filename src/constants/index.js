@@ -287,41 +287,37 @@ export const mySocials = [
 
 export const experiences = [
   {
-    title: "App Developer",
-    job: "Full App Developer",
+    title: "CS Fundamentals",
+    job: "Computer Science Student",
     date: "2021-2023",
     contents: [
-      "Developed cross-platform mobile applications using React Native and Expo Go, ensuring smooth deployment on both iOS and Android.",
-      "Designed and implemented modern, responsive UI components with React Native Paper and Material UI for a consistent user experience.",
-      "Integrated REST and GraphQL APIs for real-time data fetching and synchronization across devices.",
-      "Enhanced app performance through code-splitting, lazy loading, and optimized asset management.",
-      "Implemented push notifications, authentication flows, and deep linking for improved user engagement.",
-      "✅ Leveraged Expo’s native module support to integrate device features like camera, location, and accelerometer.",
-      "✅ Applied CI/CD pipelines for rapid testing and deployment using Expo EAS.",
-    ],
-  },
-
-  {
-    title: "Front-End Developer",
-    job: "Web Dev Intern",
-    date: "2023-2024",
-    contents: [
-      "Built interactive 3D web experiences using Three.js and WebGL, enhancing user engagement.",
-      "Developed sleek, responsive UI components with Material UI and React, ensuring a modern design language.",
-      "Integrated real-time data visualizations into 3D scenes for immersive dashboards.",
-      "✅ Optimized 3D assets and rendering pipelines, reducing load times by 25%.",
-      "✅ Implemented responsive layouts and theming with Material UI for consistent branding.",
-      "✅ Collaborated with designers and developers to create visually rich, performant user interfaces.",
+      "Built a strong foundation in Computer Science core subjects including Data Structures & Algorithms, OOPs, DBMS, and Operating Systems.",
+      "Developed proficiency in problem-solving and algorithmic thinking through competitive programming and coursework.",
+      "Gained hands-on experience with IoT (Internet of Things) systems and embedded device programming.",
+      "Implemented various database schemas and learned query optimization techniques in SQL and NoSQL databases.",
+      "Explored low-level system concepts and memory management to understand software-hardware interaction.",
     ],
   },
   {
-    title: "Freelance Developer",
-    job: "Self-Employed",
-    date: "2025-Present",
+    title: "Web & Freelance Developer",
+    job: "Full Stack & Freelance",
+    date: "2023-2025",
     contents: [
       "Developed a SCERT Book Management Platform enabling efficient cataloging, tracking, and distribution of educational materials.",
       "Created Purbasha, a digital platform to promote and sell regional products with integrated payment and inventory management.",
       "Built an Information Service Platform providing comprehensive information for government schemes, certificates, and contacts.",
+      "Built interactive 3D web experiences using Three.js and WebGL, enhancing user engagement.",
+      "Collaborated with designers and developers to create visually rich, performant user interfaces.",
+    ],
+  },
+  {
+    title: "AI & ML Engineer",
+    job: "Machine Learning Specialist",
+    date: "2026-Present",
+    contents: [
+      "Deepened expertise in Machine Learning mathematics, statistics, and model architectures to build intelligent, autonomous systems.",
+      "Specializing in RAG pipelines and MLOps, utilizing technologies like LangChain, Hugging Face, Vector DBs, and Sentence Transformers.",
+      "Developed 'Environmental Impact AI Agent', an intelligent RAG-based system that quantifies personal environmental footprints and provides data-driven, personalized sustainability recommendations.",
     ],
   },
 ];
