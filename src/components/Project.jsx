@@ -12,6 +12,10 @@ const Project = ({
   setPreview,
 }) => {
   const [isHidden, setIsHidden] = useState(false);
+  const repoLabel =
+    title && title.toLowerCase().includes("gram samriddhi")
+      ? "See Contract"
+      : "View Project";
   return (
     <>
       <div
@@ -45,6 +49,7 @@ const Project = ({
           tags={tags}
           href={href}
           liveUrl={liveUrl}
+          repoLabel={repoLabel}
           closeModal={() => setIsHidden(false)}
         />
       )}

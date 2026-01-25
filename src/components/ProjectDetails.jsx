@@ -7,6 +7,7 @@ const ProjectDetails = ({
   tags,
   href,
   liveUrl,
+  repoLabel = "View Project",
   closeModal,
 }) => {
   return (
@@ -47,7 +48,7 @@ const ProjectDetails = ({
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1 font-medium cursor-pointer hover-animation"
               >
-                View Project{" "}
+                {repoLabel}
                 <img src="assets/arrow-up.svg" className="size-4" />
               </a>
               <a
