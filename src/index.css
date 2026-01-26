@@ -82,19 +82,19 @@ body {
 }
 
 .c-space {
-  @apply sm:px-10 px-5 lg:px-15;
+  @apply sm:px-10 px-6 lg:px-16;
 }
 
 .hover-animation {
-  @apply hover:-translate-y-1 duration-200;
+  @apply hover:-translate-y-1 duration-300;
 }
 
 .section-spacing {
-  @apply min-h-screen mt-20 md:mt-30;
+  @apply min-h-[80vh] mt-24 md:mt-40 mb-20;
 }
 
 .text-heading {
-  @apply font-bold text-3xl md:text-4xl;
+  @apply font-bold text-4xl md:text-5xl tracking-tight bg-gradient-to-r from-white via-white to-white/50 bg-clip-text text-transparent;
 }
 
 .headtext {

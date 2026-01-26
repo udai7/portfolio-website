@@ -6,7 +6,7 @@ import { useFrame } from "@react-three/fiber";
 export function Astronaut(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models/tenhun_falling_spaceman_fanart.glb"
+    "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406396/tenhun_falling_spaceman_fanart_qkaium.glb"
   );
   const { actions } = useAnimations(animations, group);
   useEffect(() => {
@@ -119,4 +119,4 @@ export function Astronaut(props) {
   );
 }
 
-useGLTF.preload("/models/tenhun_falling_spaceman_fanart.glb");
+useGLTF.preload("https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406396/tenhun_falling_spaceman_fanart_qkaium.glb");

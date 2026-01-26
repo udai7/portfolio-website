@@ -12,7 +12,7 @@ export const myProjects = [
     href: "https://github.com/udai7/OatMeal",
     liveUrl: "https://oat-meal.vercel.app/",
     logo: "",
-    image: "/assets/projects/oatmeal.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
     tags: [
       {
         id: 1,
@@ -50,7 +50,7 @@ export const myProjects = [
     href: "https://drive.google.com/file/d/1me8sruyBxZJNKCP7NMyTcwq96ufNdxzr/view",
     liveUrl: "https://gsp-pro.vercel.app/",
     logo: "",
-    image: "/assets/projects/gsp.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/gsp_sdeuyj.png",
     tags: [
       {
         id: 1,
@@ -88,7 +88,7 @@ export const myProjects = [
     href: "https://github.com/udai7/March-7",
     liveUrl: "https://march-7-demageinxbqfv2ha2edrph.streamlit.app/",
     logo: "",
-    image: "/assets/projects/Environmental_Impact_Analyzer.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406281/Environmental_Impact_Analyzer_mghffq.png",
     tags: [
       {
         id: 1,
@@ -164,7 +164,7 @@ export const myProjects = [
     href: "https://github.com/udai7/It-internship-project",
     liveUrl: "https://www.youtube.com",
     logo: "",
-    image: "/assets/projects/info.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
     tags: [
       {
         id: 1,
@@ -201,7 +201,7 @@ export const myProjects = [
     href: "https://github.com/udai7/hackathon-platform",
     liveUrl: "https://www.youtube.com",
     logo: "",
-    image: "/assets/projects/hackpub.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
     tags: [
       {
         id: 1,
@@ -241,7 +241,7 @@ export const myBlogs = [
     ],
     href: "https://github.com/udai7/It-internship-project",
     logo: "",
-    image: "/assets/projects/info.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
     tags: [
       { id: 1, name: "React", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
@@ -262,7 +262,7 @@ export const myBlogs = [
     ],
     href: "https://github.com/udai7/hackathon-platform",
     logo: "",
-    image: "/assets/projects/hackpub.png",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
     tags: [
       { id: 1, name: "React", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },

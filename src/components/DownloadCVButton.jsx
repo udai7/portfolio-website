@@ -22,12 +22,12 @@ const DownloadCVButton = () => {
   };
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex flex-col items-center justify-center gap-6">
       <motion.button
         onClick={downloadCV}
         whileHover={{ y: -5 }}
         whileTap={{ scale: 1.05 }}
-        className="relative px-1 py-4 text-sm text-center rounded-full font-extralight bg-white text-black w-[12rem] cursor-pointer overflow-hidden"
+        className="relative px-6 py-4 text-sm text-center rounded-full font-medium bg-white text-black min-w-[14rem] cursor-pointer overflow-hidden shadow-xl"
       >
         <AnimatePresence mode="wait">
           {downloading ? (
@@ -66,28 +66,30 @@ const DownloadCVButton = () => {
         </AnimatePresence>
       </motion.button>
 
-      {/* Social Icons */}
-      <motion.a
-        href="https://www.linkedin.com/in/udai-das-9277a223b/"
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ y: -5 }}
-        whileTap={{ scale: 1.05 }}
-        className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer"
-      >
-        <FaLinkedin className="w-6 h-6 text-black" />
-      </motion.a>
+      {/* Social Icons Container */}
+      <div className="flex gap-4">
+        <motion.a
+          href="https://www.linkedin.com/in/udai-das-9277a223b/"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ y: -5 }}
+          whileTap={{ scale: 1.05 }}
+          className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg"
+        >
+          <FaLinkedin className="w-6 h-6 text-black" />
+        </motion.a>
 
-      <motion.a
-        href="https://github.com/udai7"
-        target="_blank"
-        rel="noopener noreferrer"
-        whileHover={{ y: -5 }}
-        whileTap={{ scale: 1.05 }}
-        className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer"
-      >
-        <FaGithub className="w-6 h-6 text-black" />
-      </motion.a>
+        <motion.a
+          href="https://github.com/udai7"
+          target="_blank"
+          rel="noopener noreferrer"
+          whileHover={{ y: -5 }}
+          whileTap={{ scale: 1.05 }}
+          className="w-12 h-12 rounded-full bg-white flex items-center justify-center cursor-pointer shadow-lg"
+        >
+          <FaGithub className="w-6 h-6 text-black" />
+        </motion.a>
+      </div>
     </div>
   );
 };

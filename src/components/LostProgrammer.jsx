@@ -6,7 +6,7 @@ import { useFrame } from "@react-three/fiber";
 export function LostProgrammer(props) {
   const group = useRef();
   const { nodes, materials, animations } = useGLTF(
-    "/models/lost_programmer.glb"
+    "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406395/lost_programmer_u7iuzc.glb"
   );
   const { actions } = useAnimations(animations, group);
 
@@ -101,4 +101,4 @@ export function LostProgrammer(props) {
   );
 }
 
-useGLTF.preload("/models/lost_programmer.glb");
+useGLTF.preload("https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406395/lost_programmer_u7iuzc.glb");

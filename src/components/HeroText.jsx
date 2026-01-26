@@ -63,9 +63,9 @@ const HeroText = () => {
         </div>
       </div>
       {/* Mobile View */}
-      <div className="flex flex-col space-y-4 md:hidden">
+      <div className="flex flex-col items-center space-y-2 md:hidden">
         <motion.p
-          className="text-2xl font-medium"
+          className="text-xl font-medium text-neutral-400"
           variants={variants}
           initial="hidden"
           animate="visible"
@@ -73,9 +73,9 @@ const HeroText = () => {
         >
           Hi, I'm Udai
         </motion.p>
-        <div>
+        <div className="flex flex-col items-center">
           <motion.p
-            className="text-3xl font-black text-neutral-300"
+            className="text-4xl font-bold text-white tracking-tight"
             variants={variants}
             initial="hidden"
             animate="visible"
@@ -88,24 +88,24 @@ const HeroText = () => {
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.5 }}
-            className="my-2"
+            className="h-20 flex items-center justify-center"
           >
             <FlipWords
               words={words}
-              className="font-bold text-white text-5xl"
+              className="font-black text-white text-5xl"
             />
           </motion.div>
           <motion.p
-            className="text-3xl font-black text-neutral-300"
+            className="text-4xl font-bold text-white tracking-tight"
             variants={variants}
             initial="hidden"
             animate="visible"
             transition={{ delay: 1.8 }}
           >
-            AI Models
+            AI Systems
           </motion.p>
           <motion.div
-            className="mt-6 flex justify-center"
+            className="mt-10"
             variants={variants}
             initial="hidden"
             animate="visible"
