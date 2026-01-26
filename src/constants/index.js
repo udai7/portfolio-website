@@ -12,7 +12,8 @@ export const myProjects = [
     href: "https://github.com/udai7/OatMeal",
     liveUrl: "https://oat-meal.vercel.app/",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
     tags: [
       {
         id: 1,
@@ -50,7 +51,8 @@ export const myProjects = [
     href: "https://drive.google.com/file/d/1me8sruyBxZJNKCP7NMyTcwq96ufNdxzr/view",
     liveUrl: "https://gsp-pro.vercel.app/",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/gsp_sdeuyj.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/gsp_sdeuyj.png",
     tags: [
       {
         id: 1,
@@ -88,7 +90,8 @@ export const myProjects = [
     href: "https://github.com/udai7/March-7",
     liveUrl: "https://march-7-demageinxbqfv2ha2edrph.streamlit.app/",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406281/Environmental_Impact_Analyzer_mghffq.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406281/Environmental_Impact_Analyzer_mghffq.png",
     tags: [
       {
         id: 1,
@@ -126,7 +129,8 @@ export const myProjects = [
     href: "https://github.com/udai7/Cian-Ai",
     liveUrl: "https://www.youtube.com",
     logo: "",
-    image: "/assets/projects/cian.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406281/cian_dkqe7h.png",
     tags: [
       {
         id: 1,
@@ -164,7 +168,8 @@ export const myProjects = [
     href: "https://github.com/udai7/It-internship-project",
     liveUrl: "https://www.youtube.com",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
     tags: [
       {
         id: 1,
@@ -201,7 +206,8 @@ export const myProjects = [
     href: "https://github.com/udai7/hackathon-platform",
     liveUrl: "https://www.youtube.com",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
     tags: [
       {
         id: 1,
@@ -241,7 +247,8 @@ export const myBlogs = [
     ],
     href: "https://github.com/udai7/It-internship-project",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406282/info_gt8rbc.png",
     tags: [
       { id: 1, name: "React", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
@@ -262,7 +269,8 @@ export const myBlogs = [
     ],
     href: "https://github.com/udai7/hackathon-platform",
     logo: "",
-    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
+    image:
+      "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/hackpub_gs02ul.png",
     tags: [
       { id: 1, name: "React", path: "/assets/logos/react.svg" },
       { id: 2, name: "TypeScript", path: "/assets/logos/javascript.svg" },
