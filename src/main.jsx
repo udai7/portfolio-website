@@ -6,6 +6,7 @@ import App from "./App.jsx";
 import Blogs from "./sections/Blogs.jsx";
 import BlogPostPage from "./sections/BlogPostPage.jsx";
 import Newsletters from "./sections/Newsletters.jsx";
+import Unsubscribe from "./sections/Unsubscribe.jsx";
 
 const router = createBrowserRouter([
   { path: "/", element: <App /> },
@@ -13,6 +14,7 @@ const router = createBrowserRouter([
   { path: "/blogs/:id", element: <BlogPostPage /> },
   { path: "/newsletters", element: <Newsletters /> },
   { path: "/newsletters/:id", element: <BlogPostPage /> },
+  { path: "/unsubscribe", element: <Unsubscribe /> },
 ]);
 
 createRoot(document.getElementById("root")).render(

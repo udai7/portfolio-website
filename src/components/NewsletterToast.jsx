@@ -53,7 +53,7 @@ const NewsletterToast = () => {
                     initial={{ opacity: 0, y: 50, x: 50 }}
                     animate={{ opacity: 1, y: 0, x: 0 }}
                     exit={{ opacity: 0, y: 20, transition: { duration: 0.2 } }}
-                    className="fixed bottom-6 right-6 z-50 w-full max-w-xs"
+                    className="fixed bottom-6 z-50 w-[calc(100%-3rem)] max-w-xs left-1/2 -translate-x-1/2 md:left-auto md:translate-x-0 md:right-6"
                 >
                     <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur-xl shadow-2xl">
                         {/* Close button */}
