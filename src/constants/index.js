@@ -300,6 +300,27 @@ export const myBlogs = [
   },
 ];
 
+export const myNewsletters = [
+  {
+    id: 201,
+    title: "The Agentic AI Revolution",
+    description:
+      "Exploring the shift from passive AI tools to autonomous agents that can plan, execute, and verify complex tasks.",
+    subDescription: [
+      "Understanding the core components of agentic architectures.",
+      "Case studies of successful agent deployments in software engineering.",
+      "Future trends and ethical considerations in autonomous AI.",
+    ],
+    href: "#",
+    logo: "",
+    image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png", // Placeholder
+    tags: [
+      { id: 1, name: "AI", path: "/assets/logos/next.png" }, // Placeholder
+      { id: 2, name: "Future", path: "/assets/logos/react.svg" }, // Placeholder
+    ],
+  },
+];
+
 export const mySocials = [
   {
     name: "Linkedin",
@@ -335,6 +356,16 @@ export const experiences = [
       "Deepened expertise in Machine Learning mathematics, statistics, and model architectures to build intelligent, autonomous systems.",
       "Specializing in RAG pipelines and MLOps, utilizing technologies like LangChain, Hugging Face, Vector DBs, and Sentence Transformers.",
       "Developed 'Environmental Impact AI Agent', an intelligent RAG-based system for personal environmental footprint quantification.",
+    ],
+  },
+  {
+    title: "Data Scientist",
+    job: "Data Analyst & Researcher",
+    date: "2024-2025",
+    contents: [
+      "Analyzed large datasets to extract meaningful insights and drive decision-making.",
+      "Developed predictive models and algorithms to solve complex business problems.",
+      "Visualized data using tools like Matplotlib, Seaborn, and Tableau.",
     ],
   },
 ];

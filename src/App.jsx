@@ -6,11 +6,13 @@ import Experiences from "./sections/Experiences";
 import Testimonial from "./sections/Testimonial";
 import Contact from "./sections/Contact";
 import Footer from "./sections/Footer";
+import NewsletterToast from "./components/NewsletterToast";
 
 const App = () => {
   return (
     <div className="container mx-auto max-w-7xl">
       <Navbar />
+      <NewsletterToast />
       <div id="home">
         <Hero />
       </div>
@@ -18,8 +20,12 @@ const App = () => {
         <About />
       </div>
       <div id="work">
-        <Projects />
-        <Experiences />
+        <div id="projects">
+          <Projects />
+        </div>
+        <div id="experience">
+          <Experiences />
+        </div>
       </div>
       <Testimonial />
       <div id="contact">

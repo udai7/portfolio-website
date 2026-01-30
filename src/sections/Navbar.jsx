@@ -1,38 +1,53 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-function Navigation() {
+
+function Navigation({ onClick }) {
   return (
     <ul className="nav-ul">
       <li className="nav-li">
-        <a className="nav-link" href="/#home">
-          Home
+        <a className="nav-link" href="/#projects" onClick={onClick}>
+          Projects
         </a>
       </li>
       <li className="nav-li">
-        <a className="nav-link" href="/#about">
-          About
+        <a className="nav-link" href="/#experience" onClick={onClick}>
+          Experience
         </a>
       </li>
       <li className="nav-li">
-        <a className="nav-link" href="/#work">
-          Work
-        </a>
-      </li>
-      <li className="nav-li">
-        <a className="nav-link" href="/#contact">
+        <a className="nav-link" href="/#contact" onClick={onClick}>
           Contact
         </a>
       </li>
       <li className="nav-li">
-        <a className="nav-link" href="/blogs">
+        <a
+          className="nav-link bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent font-bold hover:from-white hover:to-white transition-all"
+          href="/blogs"
+          onClick={onClick}
+        >
           Blogs
+        </a>
+      </li>
+      <li className="nav-li">
+        <a
+          className="nav-link bg-gradient-to-r from-amber-400 to-orange-500 bg-clip-text text-transparent font-bold hover:from-white hover:to-white transition-all"
+          href="/newsletters"
+          onClick={onClick}
+        >
+          Newsletters
         </a>
       </li>
     </ul>
   );
 }
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleNavClick = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="fixed top-0 inset-x-0 z-50 w-full backdrop-blur-md bg-primary/70 border-b border-white/10">
       <div className="mx-auto w-full px-6 md:px-12">
@@ -81,7 +96,7 @@ const Navbar = () => {
             )}
           </button>
           <nav className="hidden sm:flex">
-            <Navigation />
+            <Navigation onClick={handleNavClick} />
           </nav>
         </div>
       </div>
@@ -94,7 +109,7 @@ const Navbar = () => {
           transition={{ duration: 1 }}
         >
           <nav className="pb-5">
-            <Navigation />
+            <Navigation onClick={handleNavClick} />
           </nav>
         </motion.div>
       )}
