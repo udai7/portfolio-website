@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import BlogEntry from "../components/BlogEntry";
 import { motion, useMotionValue, useSpring } from "motion/react";
 
+import { fetchWithCache } from "../utils/apiCache";
+
 const Newsletters = () => {
     const [newsletters, setNewsletters] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -12,24 +14,24 @@ const Newsletters = () => {
     useEffect(() => {
         const fetchNewsletters = async () => {
             try {
-                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/newsletters`);
-                if (res.ok) {
-                    const data = await res.json();
-                    // Map DB structure to BlogEntry props
-                    const formatted = data.map(item => ({
-                        id: item._id,
-                        title: item.title,
-                        description: item.content.substring(0, 150) + "...",
-                        subDescription: item.keyTakeaways || [],
-                        href: "#",
-                        logo: "/assets/logos/react.svg",
-                        image: item.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
-                        tags: item.hashtags ? item.hashtags.map((t, i) => ({ id: i, name: t })) : []
-                    }));
-                    setNewsletters(formatted);
-                } else {
-                    console.error("Failed to fetch newsletters");
-                }
+                const data = await fetchWithCache(
+                    `${import.meta.env.VITE_API_BASE_URL}/api/newsletters`,
+                    "newsletters_list",
+                    24 // Cache for 24 hours
+                );
+
+                // Map DB structure to BlogEntry props
+                const formatted = data.map(item => ({
+                    id: item._id,
+                    title: item.title,
+                    description: item.content.substring(0, 150) + "...",
+                    subDescription: item.keyTakeaways || [],
+                    href: `newsletters/${item._id}`,
+                    logo: "/assets/logos/react.svg",
+                    image: item.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
+                    tags: item.hashtags ? item.hashtags.map((t, i) => ({ id: i, name: t })) : []
+                }));
+                setNewsletters(formatted);
             } catch (error) {
                 console.error("Failed to fetch newsletters", error);
             } finally {

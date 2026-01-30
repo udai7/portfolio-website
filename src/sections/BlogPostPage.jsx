@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import BlogPost from "../components/BlogPost";
 import { myBlogs } from "../constants";
 
+import { fetchWithCache } from "../utils/apiCache";
+
 const BlogPostPage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isNewsletterContext = location.pathname.includes("/newsletters");
+
   const [blog, setBlog] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,28 +26,56 @@ const BlogPostPage = () => {
         return;
       }
 
-      // 2. Try fetching from Newsletter API
+      // 2. Try finding in cached newsletters list first (Optimization)
       try {
-        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/newsletters/${id}`);
-        if (res.ok) {
-          const data = await res.json();
-          console.log("Fetched API Data:", data); // DEBUG LOG
-
-          // Normalize API data to match Static Blog structure
-          setBlog({
-            id: data._id,
-            title: data.title,
-            description: data.content,
-            subDescription: data.keyTakeaways || [],
-            image: data.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
-            tags: data.hashtags ? data.hashtags.map((t, i) => ({ id: i, name: t, path: "/assets/logos/react.svg" })) : [],
-            href: "",
-            date: data.sentAt,
-            isNewsletter: true,
-          });
-        } else {
-          console.error("Newsletter not found");
+        const cachedList = localStorage.getItem("newsletters_list");
+        if (cachedList) {
+          const parsed = JSON.parse(cachedList);
+          // Check if cache is still valid (24h)
+          const now = new Date().getTime();
+          if ((now - parsed.timestamp) / (1000 * 60 * 60) < 24) {
+            const found = parsed.data.find(n => n._id === id);
+            if (found) {
+              console.log("[Cache] Found in newsletters_list cache");
+              setBlog({
+                id: found._id,
+                title: found.title,
+                description: found.content,
+                subDescription: found.keyTakeaways || [],
+                image: found.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
+                tags: found.hashtags ? found.hashtags.map((t, i) => ({ id: i, name: t, path: "/assets/logos/react.svg" })) : [],
+                href: "",
+                date: found.sentAt,
+                isNewsletter: true,
+              });
+              setLoading(false);
+              return;
+            }
+          }
         }
+
+        // 3. Fetch specific newsletter with cache if not found in list
+        const data = await fetchWithCache(
+          `${import.meta.env.VITE_API_BASE_URL}/api/newsletters/${id}`,
+          `newsletter_${id}`,
+          24
+        );
+
+        console.log("Fetched API Data:", data);
+
+        // Normalize API data to match Static Blog structure
+        setBlog({
+          id: data._id,
+          title: data.title,
+          description: data.content,
+          subDescription: data.keyTakeaways || [],
+          image: data.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
+          tags: data.hashtags ? data.hashtags.map((t, i) => ({ id: i, name: t, path: "/assets/logos/react.svg" })) : [],
+          href: "",
+          date: data.sentAt,
+          isNewsletter: true,
+        });
+
       } catch (error) {
         console.error("Failed to fetch blog/newsletter", error);
       } finally {
@@ -67,10 +100,10 @@ const BlogPostPage = () => {
       <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-4">
         <h1 className="text-3xl font-bold mb-4">Blog Post Not Found</h1>
         <button
-          onClick={() => navigate("/blogs")}
+          onClick={() => navigate(isNewsletterContext ? "/newsletters" : "/blogs")}
           className="px-4 py-2 bg-indigo-600 rounded-lg hover:bg-indigo-700 transition-colors"
         >
-          Back to Blogs
+          {isNewsletterContext ? "Back to Newsletters" : "Back to Blogs"}
         </button>
       </div>
     );
@@ -93,75 +126,100 @@ const BlogPostPage = () => {
         // Render detailed blog view using the shared component in page mode
         <BlogPost blog={blog} isPage={true} />
       ) : (
-        // Simple/Default Layout for other blogs
-        <div className="container mx-auto px-6 py-24 max-w-4xl text-white">
-          <div className="relative w-full h-[400px] mb-8 overflow-hidden rounded-2xl border border-white/10">
-            <img
-              src={blog.image}
-              alt={blog.title}
-              className="w-full h-full object-cover"
-            />
-          </div>
+        // Minimal/Premium Layout for other blogs (and Newsletters)
+        <div className="min-h-screen bg-black text-white selection:bg-white selection:text-black">
+          <div className="container mx-auto px-6 py-24 max-w-3xl">
 
-          <h1 className="text-4xl font-bold mb-6 text-white leading-tight">
-            {blog.title}
-          </h1>
-
-          <div className="flex flex-wrap gap-4 mb-8">
-            {blog.tags.map((tag) => (
-              <div
-                key={tag.id}
-                className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10"
+            {/* Header Section */}
+            <div className="mb-16">
+              <button
+                onClick={() => navigate(isNewsletterContext ? "/newsletters" : "/blogs")}
+                className="group flex items-center gap-2 text-neutral-400 hover:text-white transition-colors duration-300 mb-12 text-sm uppercase tracking-widest font-medium"
               >
-                {/* <img src={tag.path} alt={tag.name} className="w-5 h-5" /> */}
-                <span className="text-sm text-amber-400">#{tag.name}</span>
+                <span className="group-hover:-translate-x-1 transition-transform duration-300">←</span>
+                {isNewsletterContext ? "Back to Newsletters" : "Back to Blogs"}
+              </button>
+
+              <div className="flex flex-wrap gap-3 mb-8">
+                {blog.tags.map((tag) => (
+                  <span
+                    key={tag.id}
+                    className="text-xs font-medium px-3 py-1 border border-neutral-800 rounded-full text-neutral-400"
+                  >
+                    {tag.name}
+                  </span>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div className="prose prose-invert max-w-none">
-            <p className="text-xl text-gray-300 leading-relaxed mb-8 whitespace-pre-wrap">
-              {blog.description}
-            </p>
+              <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight tracking-tight mb-4 font-generalsans">
+                {blog.title}
+              </h1>
 
-            {blog.subDescription && blog.subDescription.length > 0 && (
-              <div className="bg-white/5 rounded-2xl p-8 border border-white/10">
-                <h3 className="text-2xl font-semibold mb-4 text-white">
-                  Key Takeaways
-                </h3>
-                <ul className="space-y-4">
-                  {blog.subDescription.map((desc, idx) => (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-3 text-gray-400"
-                    >
-                      <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-indigo-500 shrink-0" />
-                      <span>{desc}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="flex items-center gap-4 text-neutral-500 text-sm mt-6">
+                <span>{new Date(blog.date || Date.now()).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</span>
+                {blog.author && (
+                  <>
+                    <span className="w-1 h-1 bg-neutral-700 rounded-full" />
+                    <span>{blog.author}</span>
+                  </>
+                )}
               </div>
-            )}
-          </div>
+            </div>
 
-          <div className="mt-12 pt-8 border-t border-white/10 flex justify-between items-center">
-            <button
-              onClick={() => navigate("/blogs")}
-              className="px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 transition-colors text-white font-medium flex items-center gap-2"
-            >
-              ← Back to Blogs
-            </button>
+            {/* Featured Image */}
+            <div className="w-full aspect-video mb-16 overflow-hidden bg-neutral-900 rounded-none sm:rounded-2xl ring-1 ring-white/10">
+              <img
+                src={blog.image}
+                alt={blog.title}
+                className="w-full h-full object-cover opacity-90"
+              />
+            </div>
 
-            {blog.href && (
-              <a
-                href={blog.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-700 transition-colors text-white font-medium flex items-center gap-2"
-              >
-                View Project Source →
-              </a>
-            )}
+            {/* Content Section */}
+            <div className="prose prose-invert max-w-none prose-lg prose-headings:font-semibold prose-p:text-neutral-300 prose-p:leading-8 prose-a:text-white prose-a:no-underline hover:prose-a:underline">
+              <p className="text-xl md:text-2xl text-white font-light leading-relaxed mb-12 border-l-2 border-white pl-6">
+                {blog.description}
+              </p>
+
+              {blog.subDescription && blog.subDescription.length > 0 && (
+                <div className="my-16 pl-6 border-l border-neutral-800">
+                  <h3 className="text-lg font-medium text-white mb-6 uppercase tracking-wider">
+                    Key Takeaways
+                  </h3>
+                  <ul className="space-y-4 m-0 p-0 list-none">
+                    {blog.subDescription.map((desc, idx) => (
+                      <li
+                        key={idx}
+                        className="text-neutral-400 text-lg flex items-start gap-4"
+                      >
+                        <span className="text-neutral-600 mt-1.5">0{idx + 1}</span>
+                        <span>{desc}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+
+            {/* Footer / Actions */}
+            <div className="mt-24 pt-12 border-t border-neutral-900 flex justify-between items-center">
+              {/* Left side empty for spacing or future use */}
+              <div></div>
+
+              {blog.href && (
+                <a
+                  href={blog.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-8 py-4 bg-white text-black hover:bg-neutral-200 transition-colors font-semibold rounded-full flex items-center gap-2"
+                >
+                  View Project Source
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg" className="transform -rotate-45">
+                    <path d="M1 6H11M11 6L6 1M11 6L6 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              )}
+            </div>
           </div>
         </div>
       )}
