@@ -8,8 +8,9 @@ const Unsubscribe = () => {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
 
-    // Get email from URL if present
+    // Get email and token from URL if present
     const initialEmail = searchParams.get("email") || "";
+    const token = searchParams.get("token") || "";
 
     const [email, setEmail] = useState(initialEmail);
     const [status, setStatus] = useState("idle"); // idle, loading, success, error
@@ -30,7 +31,7 @@ const Unsubscribe = () => {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({ email }),
+                body: JSON.stringify({ email, token }),
             });
 
             const data = await response.json();
@@ -116,8 +117,8 @@ const Unsubscribe = () => {
                                     type="submit"
                                     disabled={status === "loading" || !email}
                                     className={`w-full py-3 px-4 rounded-xl font-medium transition-all duration-300 relative overflow-hidden group ${status === "loading" || !email
-                                            ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
-                                            : "bg-white text-black hover:bg-neutral-200 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
+                                        ? "bg-neutral-800 text-neutral-500 cursor-not-allowed"
+                                        : "bg-white text-black hover:bg-neutral-200 shadow-[0_0_20px_rgba(255,255,255,0.1)]"
                                         }`}
                                 >
                                     {status === "loading" ? "Processing..." : "Confirm Unsubscribe"}
