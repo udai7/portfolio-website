@@ -12,19 +12,19 @@ const Newsletters = () => {
     useEffect(() => {
         const fetchNewsletters = async () => {
             try {
-                const res = await fetch('/api/newsletters');
+                const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/newsletters`);
                 if (res.ok) {
                     const data = await res.json();
                     // Map DB structure to BlogEntry props
                     const formatted = data.map(item => ({
                         id: item._id,
                         title: item.title,
-                        description: item.content.substring(0, 150) + "...", // Truncate content for description
-                        subDescription: [], // DB doesn't have this yet, maybe add later
-                        href: "#", // Link to full view (future)
-                        logo: "/assets/logos/react.svg", // Placeholder logo
-                        image: "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png", // Placeholder
-                        tags: []
+                        description: item.content.substring(0, 150) + "...",
+                        subDescription: item.keyTakeaways || [],
+                        href: "#",
+                        logo: "/assets/logos/react.svg",
+                        image: item.image || "https://res.cloudinary.com/dnhk0mn2o/image/upload/v1769406283/oatmeal_nt49ak.png",
+                        tags: item.hashtags ? item.hashtags.map((t, i) => ({ id: i, name: t })) : []
                     }));
                     setNewsletters(formatted);
                 } else {

@@ -22,7 +22,7 @@ const NewsletterToast = () => {
 
         setStatus("loading");
         try {
-            const response = await fetch("/api/subscribe", {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/subscribe`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
