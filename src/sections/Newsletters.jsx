@@ -67,7 +67,7 @@ const Newsletters = () => {
                         <div className="text-white text-center py-10">Loading newsletters...</div>
                     ) : newsletters.length > 0 ? (
                         newsletters.map((newsletter) => (
-                            <BlogEntry key={newsletter.id} {...newsletter} setPreview={setPreview} />
+                            <BlogEntry key={newsletter.id} {...newsletter} setPreview={setPreview} basePath="newsletters" />
                         ))
                     ) : (
                         <div className="text-neutral-400 text-center py-10">No newsletters found. Check back soon!</div>

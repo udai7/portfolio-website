@@ -26,6 +26,8 @@ const BlogPostPage = () => {
         const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/newsletters/${id}`);
         if (res.ok) {
           const data = await res.json();
+          console.log("Fetched API Data:", data); // DEBUG LOG
+
           // Normalize API data to match Static Blog structure
           setBlog({
             id: data._id,
@@ -112,7 +114,7 @@ const BlogPostPage = () => {
                 className="flex items-center gap-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10"
               >
                 {/* <img src={tag.path} alt={tag.name} className="w-5 h-5" /> */}
-                <span className="text-sm text-gray-300">#{tag.name}</span>
+                <span className="text-sm text-amber-400">#{tag.name}</span>
               </div>
             ))}
           </div>

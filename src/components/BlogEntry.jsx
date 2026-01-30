@@ -10,6 +10,7 @@ const BlogEntry = ({
   image,
   tags,
   setPreview,
+  basePath = "blogs", // Default to "blogs" if not provided
 }) => {
   return (
     <>
@@ -27,7 +28,7 @@ const BlogEntry = ({
           </div>
         </div>
         <Link
-          to={`/blogs/${id}`}
+          to={`/${basePath}/${id}`}
           className="flex items-center gap-1 cursor-pointer hover-animation"
         >
           Read More
